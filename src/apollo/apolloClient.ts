@@ -16,9 +16,15 @@ export const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     }),
     new HttpLink({
-      uri: 'http://localhost:4000',
-      credentials: 'same-origin'
+      uri: 'http://localhost:4000/graphql',
+      // credentials: 'same-origin',
+      fetchOptions: {
+        mode: 'no-cors'
+      }
     })
   ]),
   cache: new InMemoryCache(),
 });
+
+
+

@@ -6,8 +6,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 // Components
 // import { Toolbar } from '../../components';
 
-// Pages
-import { Main } from '../../pages';
+// Containers
+import { Routes } from '../Routes';
 
 // Hooks
 // import { useLocalStorage } from '../../hooks';
@@ -37,13 +37,7 @@ export const App: FC = () => {
         //             setThemeName = { setThemeName }
         //             themeName = { themeName }
         //         />
-                <Switch>
-                    <Route
-                        component = { Main }
-                        path = '/main'
-                    />
-                    <Redirect to = '/main' />
-                </Switch>
+                <Routes />
         //     </S.AppContainer>
         // </ThemeProvider>
     );
