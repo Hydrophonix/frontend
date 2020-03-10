@@ -4,9 +4,6 @@ mutation Register($input: AuthInput!) {
       id
       email
     }
-    errors {
-      path
-      message
-    }
+    accessToken
   }
 }

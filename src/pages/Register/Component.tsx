@@ -1,15 +1,9 @@
 // Core
 import React, { FC, useState } from 'react';
 
-// Components
-
 // Hooks
 import { useRegisterMutation } from '../../generated/graphql';
-
-// Styles
-// import S from './styles';
-
-// Instruments
+import { setAccessToken } from '../../tokenStore';
 
 type RegisterProps = {}
 
@@ -21,32 +15,40 @@ const Register: FC<RegisterProps> = () => {
     return (
         <div>
             <div>KEK Register</div>
-            <form onSubmit={async e => {
-                e.preventDefault();
-                console.log('form submit');
-                console.log('email', email);
-                console.log('password', password);
+            <form onSubmit = { async (event) => {
+                event.preventDefault();
+
                 const response = await register({
                     variables: {
-                        input: { email, password }
-                    }
-                })
+                        input: { email, password },
+                    },
+                });
                 console.log('<<<TESTLOG>>>: response', response);
 
-            }}>
+                if (response && response.data) {
+                    setAccessToken(response.data.registerWeb.accessToken);
+                }
+            } }>
                 <div>
-                    <input value={email} placeholder="enter email" onChange={(e) => setEmail(e.target.value)} />
+                    <input
+                        placeholder = 'enter email'
+                        value = { email }
+                        onChange = { (event) => setEmail(event.target.value) }
+                    />
                 </div>
                 <div>
-                    <input value={password} placeholder="enter password" onChange={(e) => setPassword(e.target.value)} />
+                    <input
+                        placeholder = 'enter password'
+                        value = { password }
+                        onChange = { (event) => setPassword(event.target.value) }
+                    />
                 </div>
                 <div>
-                    <button type="submit">Registr!1!</button>
+                    <button type = 'submit'>Registr!1!</button>
                 </div>
             </form>
         </div>
     );
 };
-// Home
 
 export default Register;

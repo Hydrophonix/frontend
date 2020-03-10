@@ -1,3 +1,6 @@
+// Instruments
+import { nodeModulePath } from '../constants';
+
 export const loadJavaScript = () => ({
     module: {
         rules: [
@@ -28,6 +31,7 @@ export const loadTypeScript = () => ({
                 enforce: 'pre',
                 test:    /\.js$/,
                 loader:  'source-map-loader',
+                exclude: [ nodeModulePath('apollo-link-token-refresh') ],
             },
         ],
     },

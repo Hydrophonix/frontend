@@ -1,0 +1,9 @@
+mutation Login($input: AuthInput!) {
+  loginWeb(input: $input) {
+    user {
+      id
+      email
+    }
+    accessToken
+  }
+}

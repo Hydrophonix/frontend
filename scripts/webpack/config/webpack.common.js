@@ -30,7 +30,7 @@ export default () => {
                 hashDigestLength: 5,
             },
             resolve: {
-                extensions: [ '.tsx', '.ts', '.js' ],
+                extensions: [ '.tsx', '.ts', '.js', '.jsx' ],
             },
         },
         modules.defineEnvVariables(),

@@ -2,7 +2,14 @@
 extends:
     - '@lectrum/eslint-config-core'
 
+parser: '@typescript-eslint/parser'
+
+# TODO: move to typescript, change plagins/rules + add prettier
+# plagins: 
+#     - '@typescript-eslint'
+
 rules:
     no-console: 0
     valid-jsdoc: 0
     linebreak-style: 0
+    no-unused-vars: 0

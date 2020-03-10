@@ -1,44 +1,33 @@
 // Core
-import React, { useEffect, useMemo, FC } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-// import { ThemeProvider } from 'styled-components';
-
-// Components
-// import { Toolbar } from '../../components';
+import React, { useEffect, FC, useState } from 'react';
 
 // Containers
 import { Routes } from '../Routes';
 
-// Hooks
-// import { useLocalStorage } from '../../hooks';
-
-// Theme
-// import { themes } from '../../theme';
-
-// Styles
-// import S from './styles';
-// import G from '../../assets/globalStyles';
+// Instruments
+import { setAccessToken } from '../../tokenStore';
+import { TOKEN_URL } from '../../constants';
 
 export const App: FC = () => {
-    // const [ themeName, setThemeName ] = useLocalStorage('theme', 'lightTheme');
+    const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
-        console.log('App');
-    });
+        fetch(TOKEN_URL, { credentials: 'include', method: 'POST' })
+            .then(async (res) => {
+                const { accessToken, ok } = await res.json();
+                console.log('"|_(ʘ_ʘ)_/" =>: App:FC -> ok', ok);
+                setAccessToken(accessToken);
+                setLoading(false);
+            });
+    }, []);
 
-    // const theme = useMemo(() => themes[ themeName ], [ themeName ]);
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
-        // <ThemeProvider theme = { theme }>
-        //     <G.GlobalReset />
-        //     <G.GlobalFonts />
-        //     <S.AppContainer>
-        //         <Toolbar
-        //             setThemeName = { setThemeName }
-        //             themeName = { themeName }
-        //         />
-                <Routes />
-        //     </S.AppContainer>
-        // </ThemeProvider>
+        <>
+            <Routes />
+        </>
     );
 };

@@ -20,7 +20,7 @@ export const optimizeBuild = () => ({
         // chunk graph → output
 
         // production: минификация JavaScript.
-        minimize:  false,
+        minimize:  true,
         minimizer: [ new TerserPlugin() ],
 
         // production: останавливает эмит сборки при возникновении ошибки во время компиляции.

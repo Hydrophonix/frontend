@@ -1,30 +1,60 @@
+// Core
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
-import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 
+// Instruments
+import { GRAPHQL_URL }      from '../constants';
+import { tokenRefreshLink } from './token';
+import { errorLink }        from './errors';
+import { requestLink }      from './requestHeaders';
+
 export const client = new ApolloClient({
-  link: ApolloLink.from([
-    onError(({ graphQLErrors, networkError }) => {
-      if (graphQLErrors)
-        graphQLErrors.forEach(({ message, locations, path }) =>
-          console.log(
-            `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-          ),
-        );
-      if (networkError) console.log(`[Network error]: ${networkError}`);
-    }),
-    new HttpLink({
-      uri: 'http://localhost:4000/graphql',
-      // credentials: 'same-origin',
-      fetchOptions: {
-        mode: 'no-cors'
-      }
-    })
-  ]),
-  cache: new InMemoryCache(),
+    link: ApolloLink.from([
+        tokenRefreshLink,
+        errorLink,
+        requestLink,
+        new HttpLink({
+            uri:         GRAPHQL_URL,
+            credentials: 'include',
+        }),
+    ]),
+    cache: new InMemoryCache(),
 });
 
+// ----------------------------------------------------------------------------
+// Templates
+// ----------------------------------------------------------------------------
 
+// const cache = new InMemoryCache({
+//   cacheRedirects: {
+//     Query: {
+//       movie: (_, { id }, { getCacheKey }) =>
+//         getCacheKey({ __typename: 'Movie', id });
+//     }
+//   }
+// });
 
+// const client = new ApolloClient({
+//     withClientState({
+//       defaults: {
+//         isConnected: true
+//       },
+//       resolvers: {
+//         Mutation: {
+//           updateNetworkStatus: (_, { isConnected }, { cache }) => {
+//             cache.writeData({ data: { isConnected }});
+//             return null;
+//           }
+//         }
+//       },
+//       cache
+//     }),
+//     new HttpLink({
+//       uri: 'https://w5xlvm3vzz.lp.gql.zone/graphql',
+//       credentials: 'include'
+//     })
+//   ]),
+//   cache
+// });

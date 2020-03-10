@@ -1,23 +1,32 @@
 // Core
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
-// Components
+// Hooks
+import { useUsersQuery } from '../../generated/graphql';
 
-// Styles
-// import S from './styles';
+const Home: React.FC = () => {
+    const { data, loading, error } = useUsersQuery({
+        fetchPolicy: 'network-only',
+    });
 
-// Instruments
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
-const Home = () => {
+    if (error) {
+        return <div>err</div>;
+    }
+
     return (
         <div>
             <p>KEK MAIN</p>
-            <div><Link to="/register">Register</Link></div>
-            <div><Link to="/login">Login</Link></div>
+            {data && data.users.map(({ id, email }, i) => (
+                <div key = { id }>
+                    {i} : {id} : {email}
+                </div>
+            ))}
         </div>
     );
 };
-// Home
 
 export default Home;
