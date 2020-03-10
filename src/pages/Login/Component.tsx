@@ -9,7 +9,7 @@ import { setAccessToken } from '../../tokenStore';
 
 type LoginProps = {}
 
-const Login: FC<LoginProps> = () => {
+const Login:FC<LoginProps> = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ login ] = useLoginMutation();
@@ -21,7 +21,7 @@ const Login: FC<LoginProps> = () => {
                 event.preventDefault();
                 const response = await login({
                     variables: {
-                        input: { email, password },
+                        input: {email, password },
                     },
                 });
                 console.log('"|_(ʘ_ʘ)_/" =>: response', response);
