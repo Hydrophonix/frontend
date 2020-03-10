@@ -1,6 +1,5 @@
 // Core
 import React, { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 // Hooks
 import { useLoginMutation } from '../../generated/graphql';
@@ -18,21 +17,14 @@ const Login: FC<LoginProps> = () => {
     return (
         <div>
             <div>KEK LOGIN</div>
-            <div><Link to = '/home'>Home</Link></div>
-            <div><Link to = '/register'>Register</Link></div>
-            <div><Link to = '/login'>Login</Link></div>
-            <div><Link to = '/me'>Me</Link></div>
             <form onSubmit = { async (event) => {
                 event.preventDefault();
-                console.log('form submit');
-                console.log('email', email);
-                console.log('password', password);
                 const response = await login({
                     variables: {
                         input: { email, password },
                     },
                 });
-                console.log('<<<TESTLOG>>>: response', response);
+                console.log('"|_(ʘ_ʘ)_/" =>: response', response);
 
                 if (response && response.data) {
                     setAccessToken(response.data.loginWeb.accessToken);
