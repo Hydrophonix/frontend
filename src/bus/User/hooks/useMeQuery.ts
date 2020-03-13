@@ -6,11 +6,11 @@ import * as ApolloReactHooks from '@apollo/react-hooks';
 import { useCustomQuery } from '../../../hooks';
 
 // GraphQL
-import LoginDocument from '../me.graphql';
+import LoginSchema from '../schemas/me.graphql';
 
 // Types
 import { Me } from '../types';
 
 export const useMeQuery = (baseOptions?: ApolloReactHooks.MutationHookOptions<Me, {}>) => {
-    return useCustomQuery<Me, {}>(LoginDocument, baseOptions);
+    return useCustomQuery<Me, {}>(LoginSchema, baseOptions);
 };

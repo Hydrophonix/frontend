@@ -12,3 +12,6 @@ export const SOURCE_DIRECTORY = resolve(PROJECT_ROOT, './src');
 export const BUILD_DIRECTORY = resolve(PROJECT_ROOT, './build');
 export const STATIC_DIRECTORY = resolve(PROJECT_ROOT, './static');
 export const nodeModulePath = (nodeModuleName) => resolve(PROJECT_ROOT, `./node_modules/${nodeModuleName}`);
+
+// App
+export const APP_NAME = 'HydroPortfolio';

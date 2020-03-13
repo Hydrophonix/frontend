@@ -2,13 +2,13 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 // Constants
-import { STATIC_DIRECTORY } from '../constants';
+import { STATIC_DIRECTORY, APP_NAME } from '../constants';
 
 export const connectHtml = () => ({
     plugins: [
         new HtmlWebpackPlugin({
             template: `${STATIC_DIRECTORY}/template.html`,
-            title:    'TJS',
+            title:    APP_NAME,
             favicon:  `${STATIC_DIRECTORY}/favicon.ico`,
         }),
     ],
