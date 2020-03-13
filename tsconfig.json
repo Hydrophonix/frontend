@@ -20,14 +20,13 @@
       "noEmit": true,
       "jsx": "react",
       "rootDir": "src",
-
+      "typeRoots": ["node_modules/@types", "src/@types"],
     },
     "awesomeTypescriptLoaderOptions": {
       "useBabel": true,
       "babelCore": "@babel/core", // needed for Babel v7
     },
-    "include": [
-      "src"
-    ]
+    "include": [ "src" ],
+    "exclude": [ "node_modules", "src/generated" ]
   }
   

@@ -1,32 +1,34 @@
 // Core
 import React, { FC, useState } from 'react';
 
+// Components
+import { ErrorBoundary } from '../../components';
+
 // Hooks
-import { useRegisterMutation } from '../../generated/graphql';
+import { useLoginMutation } from '../../bus';
+
+// Instruments
 import { setAccessToken } from '../../tokenStore';
 
-type RegisterProps = {}
+type LoginProps = {}
 
-const Register: FC<RegisterProps> = () => {
+const Login:FC<LoginProps> = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
-    const [ register ] = useRegisterMutation();
+    const [ login ] = useLoginMutation();
 
     return (
         <div>
-            <div>KEK Register</div>
+            <div>KEK LOGIN</div>
             <form onSubmit = { async (event) => {
                 event.preventDefault();
-
-                const response = await register({
-                    variables: {
-                        input: { email, password },
-                    },
+                const response = await login({
+                    variables: { input: {email, password} },
                 });
-                console.log('<<<TESTLOG>>>: response', response);
+                console.log('"|_(ʘ_ʘ)_/" =>: response', response);
 
                 if (response && response.data) {
-                    setAccessToken(response.data.registerWeb.accessToken);
+                    setAccessToken(response.data.loginWeb.accessToken);
                 }
             } }>
                 <div>
@@ -44,11 +46,15 @@ const Register: FC<RegisterProps> = () => {
                     />
                 </div>
                 <div>
-                    <button type = 'submit'>Registr!1!</button>
+                    <button type = 'submit'>Login!1!</button>
                 </div>
             </form>
         </div>
     );
 };
 
-export default Register;
+export default () => (
+    <ErrorBoundary>
+        <Login />
+    </ErrorBoundary>
+);

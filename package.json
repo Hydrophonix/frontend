@@ -8,7 +8,9 @@
         "build": "cross-env-shell NODE_ENV=production node --require @babel/register \"./scripts/webpack/build.js\"",
         "analyze": "webpack-bundle-analyzer \"./build/stats.json\"",
         "serve": "serve \"./build\" -s",
-        "gen": "graphql-codegen --config graphql-codegen.yml"
+        "gen": "graphql-codegen --config graphql-codegen.yml",
+        "apollo:schema": "apollo service:download graphqlSchema.json",
+        "apollo:gen": "apollo codegen:generate --localSchemaFile=graphqlSchema.json --target=typescript --globalTypesFile=src/@types/graphql-global-types.ts ./types"
     },
     "dependencies": {
         "@apollo/react-hooks": "^3.1.3",
@@ -55,6 +57,7 @@
         "@types/styled-components": "^5.0.0",
         "@typescript-eslint/eslint-plugin": "^2.23.0",
         "@typescript-eslint/parser": "^2.23.0",
+        "apollo": "^2.25.0",
         "app-root-path": "2.1.0",
         "awesome-typescript-loader": "^5.2.1",
         "babel-eslint": "10.0.1",

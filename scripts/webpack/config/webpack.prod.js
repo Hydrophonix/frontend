@@ -11,7 +11,7 @@ export default () => {
     return merge(
         getCommonConfig(),
         {
-            mode:    'none', // NODE_ENV = 'production'
+            mode:    'none', // none to remove bundle chunk size warning
             devtool: false,
         },
         modules.cleanDirectories(),

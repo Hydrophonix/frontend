@@ -36,6 +36,7 @@ export default () => {
         modules.defineEnvVariables(),
         // modules.loadJavaScript(),
         modules.loadTypeScript(),
+        modules.loadGraphQL(),
         modules.loadFonts(),
         modules.loadImages(),
         modules.loadSvg(),

@@ -7,10 +7,10 @@ import { getAccessToken } from '../tokenStore';
 export const requestLink = new ApolloLink((operation, forward) => new Observable((observer) => {
     let handle: any = null;
     Promise.resolve(operation)
-        .then(async (operation) => {
+        .then((operation) => {
             operation.setContext({
                 headers: {
-                    authorization: `Bearer ${await getAccessToken()}`,
+                    authorization: `Bearer ${getAccessToken()}`,
                 },
             });
         })

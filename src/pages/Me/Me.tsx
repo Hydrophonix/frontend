@@ -1,8 +1,11 @@
 // Core
 import React from 'react';
 
+// Components
+import { ErrorBoundary } from '../../components';
+
 // Hooks
-import { useMeQuery } from '../../generated/graphql';
+import { useMeQuery } from '../../bus';
 
 type MeProps = {}
 
@@ -28,4 +31,8 @@ const Me: React.FC<MeProps> = () => {
     );
 };
 
-export default Me;
+export default () => (
+    <ErrorBoundary>
+        <Me />
+    </ErrorBoundary>
+);

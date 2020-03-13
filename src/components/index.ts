@@ -1,1 +1,2 @@
-export * from './topBar';
+export * from './TopBar';
+export * from './ErrorBoundary';

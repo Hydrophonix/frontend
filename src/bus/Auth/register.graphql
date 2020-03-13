@@ -1,4 +1,4 @@
-mutation Register($input: AuthInput!) {
+mutation Register ($input: AuthInput!) {
   registerWeb(input: $input) {
     user {
       id

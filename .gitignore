@@ -5,9 +5,11 @@
 /build/
 /coverage/
 /flow-coverage/
+/dist/
 
 # Files
 *.log
+*.env
 
 # == VIM ==
 

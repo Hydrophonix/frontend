@@ -1,4 +1,4 @@
-mutation Login($input: AuthInput!) {
+mutation Login ($input: AuthInput!) {
   loginWeb(input: $input) {
     user {
       id

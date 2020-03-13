@@ -1,13 +1,16 @@
 // Core
 import React from 'react';
 
+// Components
+import { ErrorBoundary } from '../../components';
+
 // Hooks
-import { useUsersQuery } from '../../generated/graphql';
+import { useUsersQuery } from '../../bus';
 
 const Home: React.FC = () => {
-    const { data, loading, error } = useUsersQuery({
-        fetchPolicy: 'network-only',
-    });
+    // const { data, loading, error } = useQuery<(usersQuery, { fetchPolicy: 'network-only'});
+    const { data, loading, error } = useUsersQuery({ fetchPolicy: 'network-only'});
+    // console.log('"|_(ʘ_ʘ)_/" =>: Home:React.FC -> data', data);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -29,4 +32,8 @@ const Home: React.FC = () => {
     );
 };
 
-export default Home;
+export default () => (
+    <ErrorBoundary>
+        <Home />
+    </ErrorBoundary>
+);

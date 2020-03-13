@@ -1,3 +1,5 @@
+root: true
+
 parser: '@typescript-eslint/parser'
 # parser: babel-eslint
 
@@ -185,7 +187,7 @@ rules:
     no-unsafe-finally: 2
     no-unsafe-negation: 2
     use-isnan: 2
-    valid-jsdoc: 2
+    valid-jsdoc: 0
     valid-typeof: 2
 
     # ESLint: base practices
@@ -457,11 +459,6 @@ rules:
         - 2
         - single
     babel/new-cap: 0
-
-        # Added rules
-    # no-console: 0
-    # valid-jsdoc: 0
-    # linebreak-style: 0
 
         # TypeScript
     # "@typescript-eslint/no-unused-vars-experimental": 2
