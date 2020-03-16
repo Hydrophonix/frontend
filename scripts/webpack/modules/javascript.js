@@ -1,5 +1,10 @@
+// Core
+import { createTransformer } from 'typescript-plugin-styled-components';
+
 // Instruments
 import { nodeModulePath } from '../constants';
+
+const styledComponentsTransformer = createTransformer();
 
 export const loadJavaScript = () => ({
     module: {
@@ -22,7 +27,10 @@ export const loadTypeScript = () => ({
                 test:    /\.ts(x?)$/,
                 exclude: /node_modules/,
                 use:     {
-                    loader: 'awesome-typescript-loader',
+                    loader:  'awesome-typescript-loader',
+                    options: {
+                        getCustomTransformers: () => ({ before: [ styledComponentsTransformer ] }),
+                    },
                 },
 
             },

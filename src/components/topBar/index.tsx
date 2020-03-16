@@ -1,6 +1,6 @@
 // Core
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // Hooks
 import { useLogoutMutation } from '../../bus';
@@ -8,18 +8,53 @@ import { useLogoutMutation } from '../../bus';
 // Instruments
 import { setAccessToken } from '../../tokenStore';
 
+// Assets
+import MenuHoverSound from '../../assets/sounds/menuHover.wav';
+import * as S from './styles';
+
 type Props = {};
+
+type SoundButtonProps = {
+    children?: React.ReactNode,
+    onClick: Function,
+}
+
+// const menuSound = new Audio(MenuHoverSound);
+
+const SoundButton: React.FC<SoundButtonProps> = ({ children, onClick }) => {
+    const menuSound = new Audio(MenuHoverSound);
+    // menuSound.volume
+
+    return (
+        <S.MenuButton
+            onClick = { onClick }
+            onMouseEnter = { () => menuSound.play() }
+            onMouseLeave = { () => false && menuSound.pause() }>
+            { children }
+        </S.MenuButton>
+    );
+};
 
 export const TopBar: React.FC<Props> = () => {
     const [ logout, { client }] = useLogoutMutation();
+    const history = useHistory();
+
+    useEffect(() => {
+        console.log('TOPBAR RENDER');
+    });
+
 
     return (
-        <div>
-            <h1>TOPBAR HEADER</h1>
-            <div><Link to = '/home'>Home</Link></div>
-            <div><Link to = '/register'>Register</Link></div>
-            <div><Link to = '/login'>Login</Link></div>
-            <div><Link to = '/me'>Me</Link></div>
+        <S.Container>
+            <h1>TOPBAR HEADER
+            </h1>
+            <S.MenuContainer>
+                <SoundButton onClick = { () => history.push('/home') } >Home</SoundButton>
+                <SoundButton onClick = { () => history.push('/register') } >Register</SoundButton>
+                <SoundButton onClick = { () => history.push('/login') } >Login</SoundButton>
+                <SoundButton onClick = { () => history.push('/me') } >Me</SoundButton>
+                <SoundButton onClick = { () => history.push('/game') } >GAME</SoundButton>
+            </S.MenuContainer>
             <div>
                 <button onClick = { async () => {
                     await logout();
@@ -29,6 +64,6 @@ export const TopBar: React.FC<Props> = () => {
                 </button>
             </div>
             <h1>TOPBAR FOOTER</h1>
-        </div>
+        </S.Container>
     );
 };

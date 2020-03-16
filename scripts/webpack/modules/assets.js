@@ -18,7 +18,7 @@ export const loadImages = () => ({
     module: {
         rules: [
             {
-                test: /\.(png|jpg|jpeg|gif)$/,
+                test: /\.(png|jpg|jpeg|gif|wav)$/,
                 use:  [
                     {
                         loader:  'file-loader',

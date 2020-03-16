@@ -1,7 +1,8 @@
+// Core
 import { useState } from 'react';
 import store from 'store';
 
-export const useLocalStorage = (key, innitialValue = '') => {
+export const useLocalStorage = <_, TValue>(key: string, innitialValue: TValue): [TValue, Function] => {
     const [ storedValue, setStoredValue ] = useState(() => {
         try {
             const value = store.get(key);
@@ -14,7 +15,7 @@ export const useLocalStorage = (key, innitialValue = '') => {
         }
     });
 
-    const setValue = (value) => {
+    const setValue = (value: any) => {
         try {
             store.set(key, value);
             setStoredValue(value);

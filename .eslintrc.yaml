@@ -37,7 +37,6 @@ plugins:
     - react-hooks
     - import
     - "@typescript-eslint"
-    # - "plugin:@typescript-eslint/eslint-recommended"
 
 settings:
     react:
@@ -371,7 +370,7 @@ rules:
     max-depth: 0
     max-len:
         - 2
-        - 100
+        - 120
         - ignoreTemplateLiterals: true
           ignoreStrings: true
           ignoreUrls: true
