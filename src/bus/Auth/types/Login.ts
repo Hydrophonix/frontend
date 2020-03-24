@@ -13,6 +13,7 @@ export interface Login_loginWeb_user {
   __typename: "User";
   id: string;
   email: string;
+  testbig: string;
 }
 
 export interface Login_loginWeb {

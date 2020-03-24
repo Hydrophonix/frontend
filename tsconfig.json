@@ -27,6 +27,6 @@
       "babelCore": "@babel/core", // needed for Babel v7
     },
     "include": [ "src" ],
-    "exclude": [ "node_modules", "src/generated" ]
+    "exclude": [ "node_modules" ]
   }
   

@@ -13,6 +13,7 @@ export interface Register_registerWeb_user {
   __typename: "User";
   id: string;
   email: string;
+  testbig: string;
 }
 
 export interface Register_registerWeb {

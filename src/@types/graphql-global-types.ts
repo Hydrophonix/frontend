@@ -12,6 +12,17 @@ export interface AuthInput {
   password: string;
 }
 
+export interface TodoInput {
+  title: string;
+  text: string;
+}
+
+export interface TodoUpdateInput {
+  title?: string | null;
+  text?: string | null;
+  done?: boolean | null;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

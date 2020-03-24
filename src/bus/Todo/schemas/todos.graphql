@@ -1,0 +1,9 @@
+query Todos {
+    todos {
+        id
+        done
+        text
+        title
+        ownerId
+    }
+}

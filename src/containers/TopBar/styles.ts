@@ -1,14 +1,20 @@
 // Core
 import styled from 'styled-components';
 
-export const Container = styled.div`
-    background-color: ${(props) => props.theme.bgcMain};
+export const TopBarContainer = styled.div`
+    background-color: ${(props) => props.theme.main};
     height: 200px;
     width: 100%;
-    border: 2px solid #000;
+    border-bottom: 1px solid black;
+    margin-bottom: 15px;
 `;
 
-export const MenuContainer = styled.div`
+export const ControlPanelContainer = styled.div`
+    display: flex;
+    width: 100px;
+`;
+
+export const NavigationContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;

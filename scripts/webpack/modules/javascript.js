@@ -20,7 +20,7 @@ export const loadJavaScript = () => ({
     },
 });
 
-export const loadTypeScript = () => ({
+export const loadTypeScript = (IS_DEVELOPMENT) => ({
     module: {
         rules: [
             {
@@ -29,9 +29,19 @@ export const loadTypeScript = () => ({
                 use:     {
                     loader:  'awesome-typescript-loader',
                     options: {
-                        getCustomTransformers: () => ({ before: [ styledComponentsTransformer ] }),
+                        getCustomTransformers: () => ({ before: [ styledComponentsTransformer ]}),
                     },
                 },
+                // use:     IS_DEVELOPMENT
+                //     ? {
+                //         loader: 'ts-loader',
+                //     }
+                //     : {
+                //         loader:  'awesome-typescript-loader',
+                //         options: {
+                //             getCustomTransformers: () => ({ before: [ styledComponentsTransformer ]}),
+                //         },
+                //     },
 
             },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.

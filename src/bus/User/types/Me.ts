@@ -11,6 +11,7 @@ export interface Me_me {
   __typename: "User";
   id: string;
   email: string;
+  testbig: string;
 }
 
 export interface Me {

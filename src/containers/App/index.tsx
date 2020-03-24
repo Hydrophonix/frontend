@@ -10,9 +10,7 @@ import { client } from '../../apollo';
 
 // Containers
 import { Routes } from '../Routes';
-
-// Components
-import { TopBar } from '../../components';
+import { TopBar } from '../TopBar';
 
 // Hooks
 import { useLocalStorage } from '../../hooks';
@@ -22,14 +20,14 @@ import { setAccessToken } from '../../tokenStore';
 import { TOKEN_URL } from '../../constants';
 
 // Assets
-import { GlobalReset } from '../../assets';
-import * as themes from '../../assets/themes';
+import { GlobalStyles, initIconsLibrary } from '../../assets';
+import { defaultLight, dark } from '../../assets/themes';
 
 const history = createBrowserHistory();
 
 export const App: FC = () => {
     const [ loading, setLoading ] = useState(true);
-    const [ themeName ] = useLocalStorage('theme', '');
+    const [ isDefaultTheme, toggleDefaultTheme ] = useLocalStorage('defaultTheme', true);
 
     useEffect(() => {
         fetch(TOKEN_URL, { credentials: 'include', method: 'POST' })
@@ -45,16 +43,24 @@ export const App: FC = () => {
         console.log('app rerender');
     });
 
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
+    useEffect(() => {
+        initIconsLibrary();
+    }, []);
+
+    if (loading) {
+        console.log('"|_(ʘ_ʘ)_/" =>: App:FC -> loading', loading);
+        // return <div>Loading...</div>;
+    }
 
     return (
         <ApolloProvider client = { client }>
             <Router history = { history }>
-                <ThemeProvider theme = { themeName || themes.defaultLight } >
-                    <GlobalReset />
-                    <TopBar />
+                <ThemeProvider theme = { isDefaultTheme ? defaultLight : dark } >
+                    <GlobalStyles />
+                    <TopBar
+                        isDefaultTheme = { isDefaultTheme }
+                        toggleDefaultTheme = { toggleDefaultTheme }
+                    />
                     <Routes />
                 </ThemeProvider>
             </Router>

@@ -1,1 +1,1 @@
-export * from './defaultLight';
+export * from './themes';

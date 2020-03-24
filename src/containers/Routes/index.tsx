@@ -29,6 +29,11 @@ export const Routes: React.FC = () => {
                     path = '/game'>
                     <P.Game />
                 </Route>
+                <Route
+                    exact
+                    path = '/todos'>
+                    <P.Todos />
+                </Route>
                 <Route path = '/'>
                     <P.Main />
                 </Route>
