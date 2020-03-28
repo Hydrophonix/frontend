@@ -23,7 +23,7 @@ const Login:FC<LoginProps> = () => {
             <form onSubmit = { async (event) => {
                 event.preventDefault();
                 const response = await login({
-                    variables: { input: {email, password} },
+                    variables: { input: { email, password }},
                 });
                 console.log('"|_(ʘ_ʘ)_/" =>: response', response);
 

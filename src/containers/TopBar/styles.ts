@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 export const TopBarContainer = styled.div`
-    background-color: ${(props) => props.theme.main};
+    background-color: ${(props) => props.theme.background};
     height: 200px;
     width: 100%;
     border-bottom: 1px solid black;

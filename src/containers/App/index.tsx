@@ -20,8 +20,8 @@ import { setAccessToken } from '../../tokenStore';
 import { TOKEN_URL } from '../../constants';
 
 // Assets
-import { GlobalStyles, initIconsLibrary } from '../../assets';
-import { defaultLight, dark } from '../../assets/themes';
+import { GlobalStyles, defaultLight, dark } from '../../assets';
+import { AppContainer } from './styles';
 
 const history = createBrowserHistory();
 
@@ -43,10 +43,6 @@ export const App: FC = () => {
         console.log('app rerender');
     });
 
-    useEffect(() => {
-        initIconsLibrary();
-    }, []);
-
     if (loading) {
         console.log('"|_(ʘ_ʘ)_/" =>: App:FC -> loading', loading);
         // return <div>Loading...</div>;
@@ -57,11 +53,13 @@ export const App: FC = () => {
             <Router history = { history }>
                 <ThemeProvider theme = { isDefaultTheme ? defaultLight : dark } >
                     <GlobalStyles />
-                    <TopBar
-                        isDefaultTheme = { isDefaultTheme }
-                        toggleDefaultTheme = { toggleDefaultTheme }
-                    />
-                    <Routes />
+                    <AppContainer>
+                        <TopBar
+                            isDefaultTheme = { isDefaultTheme }
+                            toggleDefaultTheme = { toggleDefaultTheme }
+                        />
+                        <Routes />
+                    </AppContainer>
                 </ThemeProvider>
             </Router>
         </ApolloProvider>
