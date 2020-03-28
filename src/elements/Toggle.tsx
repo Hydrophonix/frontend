@@ -1,13 +1,16 @@
 // Core
-import React, { FC, memo } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
-interface ToggleProps {
+interface ToggleButtonProps {
     active: boolean;
+}
+
+interface ToggleProps extends ToggleButtonProps {
     onChange: Function;
 }
 
-export const Toggle: FC<ToggleProps> = memo(({ active, onChange }) => {
+export const Toggle: FC<ToggleProps> = ({ active, onChange }) => {
     return (
         <ToggleContainer onClick = { () => onChange(!active) }>
             <ToggleBar>
@@ -15,7 +18,7 @@ export const Toggle: FC<ToggleProps> = memo(({ active, onChange }) => {
             </ToggleBar>
         </ToggleContainer>
     );
-});
+};
 
 // Styles
 const ToggleContainer = styled.div`
@@ -35,7 +38,7 @@ const ToggleBar = styled.div`
     background-color: ${({ theme }) => theme.secondary}; 
 `;
 
-const ToggleButton = styled.div`
+const ToggleButton = styled.div<ToggleButtonProps>`
     position: absolute;
     width: 20px;
     height: 20px;

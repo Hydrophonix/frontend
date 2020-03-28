@@ -4,10 +4,23 @@ import * as ApolloReactHooks from '@apollo/react-hooks';
 
 // GraphQL
 import CreateTodoSchema from '../schemas/createTodo.graphql';
+import TodosSchema from '../schemas/todos.graphql';
+
 
 // Types
-import { CreateTodo, CreateTodoVariables } from '../types';
+import { CreateTodo, CreateTodoVariables, Todos } from '../types';
 
-export const useCreateTodoMutation = (baseOptions?: ApolloReactHooks.MutationHookOptions<CreateTodo, CreateTodoVariables>) => {
+const defaultOptions: ApolloReactHooks.MutationHookOptions<CreateTodo, CreateTodoVariables> = {
+    update(cache, { data }) {
+        const { todos } = cache.readQuery<Todos>({ query: TodosSchema })!;
+
+        cache.writeQuery({
+            query: TodosSchema,
+            data:  { todos: todos.concat([ data!.createTodo ]) },
+        });
+    },
+};
+
+export const useCreateTodoMutation = (baseOptions = defaultOptions) => {
     return ApolloReactHooks.useMutation<CreateTodo, CreateTodoVariables>(CreateTodoSchema, baseOptions);
 };

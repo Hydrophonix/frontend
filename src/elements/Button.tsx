@@ -1,5 +1,5 @@
 // Core
-import React, { FC, ReactNode, memo } from 'react';
+import React, { FC, DetailedHTMLProps, Ref } from 'react';
 import styled from 'styled-components';
 
 // Instruments
@@ -8,9 +8,9 @@ import { transformStyleObjectToText } from '../utils';
 // Assets
 import { menuHoverSound } from '../assets';
 
-type ButtonProps = {
-    children?: ReactNode;
-    onClick: Function;
+interface ButtonProps extends DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+    // use React.Ref instead of React.LegacyRef to prevent type incompatibility errors with styled-components types
+    ref?: Ref<HTMLButtonElement>;
     withSound?: boolean;
     styles?: {
         height?: number;
@@ -18,7 +18,7 @@ type ButtonProps = {
     }
 }
 
-export const Button: FC<ButtonProps> = memo(({ children, onClick, styles, withSound }) => {
+export const Button: FC<ButtonProps> = ({ children, onClick, styles, withSound, ...otherProps }) => {
     if (withSound) {
         const menuSound = new Audio(menuHoverSound);
         // menuSound.volume
@@ -28,8 +28,9 @@ export const Button: FC<ButtonProps> = memo(({ children, onClick, styles, withSo
                 styles = { styles }
                 onClick = { onClick }
                 onMouseEnter = { () => menuSound.play() }
-                onMouseLeave = { () => false && menuSound.pause() }>
-                { children }
+                onMouseLeave = { () => false && menuSound.pause() }
+                { ...otherProps }>
+                {children}
             </Styled>
         );
     }
@@ -37,13 +38,14 @@ export const Button: FC<ButtonProps> = memo(({ children, onClick, styles, withSo
     return (
         <Styled
             styles = { styles }
-            onClick = { onClick }>
-            { children }
+            onClick = { onClick }
+            { ...otherProps }>
+            {children}
         </Styled>
     );
-});
+};
 
-const Styled = styled.button`
+const Styled = styled.button<ButtonProps>`
     width: 220px;
     height: 60px;
     border: 2px solid #FFF;

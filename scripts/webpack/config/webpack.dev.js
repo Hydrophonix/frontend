@@ -11,9 +11,12 @@ export default () => {
     return merge(
         getCommonConfig(),
         {
-            mode:    'development',
-            devtool: 'cheap-module-eval-source-map',
-            entry:   [ 'webpack-hot-middleware/client?reload=true&quiet=true' ],
+            mode:      'development',
+            devtool:   'cheap-module-eval-source-map',
+            entry:     [ 'webpack-hot-middleware/client?reload=true&quiet=true' ],
+            devServer: {
+                hot: true,
+            },
         },
         modules.connectHMR(),
         modules.connectFriendlyErrors(),

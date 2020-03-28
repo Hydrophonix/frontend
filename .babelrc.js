@@ -10,7 +10,6 @@ module.exports = api => {
     // api.cache.never();
 
     const plugins = [
-        '@babel/plugin-syntax-dynamic-import',
         '@babel/proposal-class-properties',
         'babel-plugin-styled-components'
     ];

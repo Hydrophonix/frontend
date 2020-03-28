@@ -20,7 +20,7 @@ export const loadJavaScript = () => ({
     },
 });
 
-export const loadTypeScript = (IS_DEVELOPMENT) => ({
+export const loadTypeScript = () => ({
     module: {
         rules: [
             {

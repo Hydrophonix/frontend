@@ -1,10 +1,9 @@
 // Core
-import React from 'react';
+import { lazy } from 'react';
 
-export const Main = React.lazy(() => import(/* webpackChunkName: "Main" */ './Main'));
-export const Register = React.lazy(() => import(/* webpackChunkName: "Register" */ './Register'));
-export const Login = React.lazy(() => import(/* webpackChunkName: "Login" */ './Login'));
-export const Me = React.lazy(() => import(/* webpackChunkName: "Me" */ './Me'));
-export const Game = React.lazy(() => import(/* webpackChunkName: "Game" */ './Game'));
-export const Todos = React.lazy(() => import(/* webpackChunkName: "Todos" */ './Todos'));
-
+export const Main = lazy(() => import(/* webpackChunkName: "Main" */ './Main'));
+export const Register = lazy(() => import(/* webpackChunkName: "Register" */ './Register'));
+export const Login = lazy(() => import(/* webpackChunkName: "Login" */ './Login'));
+export const Me = lazy(() => import(/* webpackChunkName: "Me" */ './Me'));
+export const Game = lazy(() => import(/* webpackChunkName: "Game" */ './Game'));
+export const Todos = lazy(() => import(/* webpackChunkName: "Todos" */ './Todos'));

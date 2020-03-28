@@ -2,8 +2,9 @@
 import { onError } from 'apollo-link-error';
 
 export const errorLink =  onError(({ graphQLErrors, networkError }) => {
-    console.log('<<<TESTLOG>>>: networkError', networkError);
-    console.log('<<<TESTLOG>>>: graphQLErrors', graphQLErrors);
+    console.log('<<<ERRORLINK>>>: networkError', networkError);
+    console.log('<<<ERRORLINK>>>: graphQLErrors', graphQLErrors);
+
     // if (graphQLErrors)
     //   graphQLErrors.forEach(({ message, locations, path }) =>
     //     console.log(
@@ -17,5 +18,6 @@ export const errorLink =  onError(({ graphQLErrors, networkError }) => {
     //       if (networkError) {
     //         logoutUser();
     //       }
+    // return forward(operation);
 });
 

@@ -3,6 +3,7 @@ import React from 'react';
 
 // Components
 import { ErrorBoundary } from '../../components';
+import { CreateTodo } from './CreateTodo';
 
 // Hooks
 import { useTodosQuery } from '../../bus';
@@ -13,18 +14,19 @@ import { TodosContainer } from './styles';
 type TodoProps = {}
 
 const Todo: React.FC<TodoProps> = () => {
-    const { data, loading } = useTodosQuery();
+    const { data } = useTodosQuery();
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+    // if (loading) {
+    //     return <div>Loading...</div>;
+    // }
 
     return (
         <TodosContainer>
             <h2>TODOS</h2>
             <div>KEK Todo</div>
+            <CreateTodo />
             {data?.todos.map((todo) => {
-                <div>{todo.title}</div>;
+                return <div key = { todo.id }>{todo.title}</div>;
             })}
         </TodosContainer>
     );

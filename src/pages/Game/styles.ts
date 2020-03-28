@@ -1,11 +1,16 @@
 // Core
 import styled from 'styled-components';
 
+interface CellProps {
+    value: number;
+    transition: number;
+}
+
 export const Table = styled.table`
     border-collapse: collapse;
 `;
 
-export const Cell = styled.td`
+export const Cell = styled.td<CellProps>`
     border: 1px solid #000;
     height: 15px;
     width: 15px;
