@@ -1,4 +1,7 @@
-export const loadGraphQL = () => ({
+// Core
+import { Configuration } from 'webpack';
+
+export const loadGraphQL = (): Configuration => ({
     module: {
         rules: [
             {

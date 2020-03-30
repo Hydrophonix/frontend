@@ -1,6 +1,5 @@
 
 // Core
-import 'core-js/stable';
 import React from 'react';
 import { render } from 'react-dom';
 

@@ -1,4 +1,5 @@
 // Core
+import { Configuration } from 'webpack';
 import { createTransformer } from 'typescript-plugin-styled-components';
 
 // Instruments
@@ -6,25 +7,12 @@ import { nodeModulePath } from '../constants';
 
 const styledComponentsTransformer = createTransformer();
 
-export const loadJavaScript = () => ({
-    module: {
-        rules: [
-            {
-                test:    /\.js$/,
-                exclude: /node_modules/,
-                use:     {
-                    loader: 'babel-loader',
-                },
-            },
-        ],
-    },
-});
-
-export const loadTypeScript = () => ({
+export const loadTypeScript = (): Configuration => ({
     module: {
         rules: [
             {
                 test:    /\.ts(x?)$/,
+                include: /src/,
                 exclude: /node_modules/,
                 use:     {
                     loader:  'awesome-typescript-loader',
@@ -32,17 +20,6 @@ export const loadTypeScript = () => ({
                         getCustomTransformers: () => ({ before: [ styledComponentsTransformer ]}),
                     },
                 },
-                // use:     IS_DEVELOPMENT
-                //     ? {
-                //         loader: 'ts-loader',
-                //     }
-                //     : {
-                //         loader:  'awesome-typescript-loader',
-                //         options: {
-                //             getCustomTransformers: () => ({ before: [ styledComponentsTransformer ]}),
-                //         },
-                //     },
-
             },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             {

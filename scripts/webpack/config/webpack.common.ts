@@ -7,13 +7,8 @@ import { SOURCE_DIRECTORY, BUILD_DIRECTORY } from '../constants';
 // Modules
 import * as modules from '../modules';
 
-/**
- * Типы конфигов вебпак:
- * Function
- * Object
- * Promise
- */
-export default () => {
+// https://webpack.js.org/configuration/
+export const getCommonConfig = () => {
     const { NODE_ENV } = process.env;
     const IS_DEVELOPMENT = NODE_ENV === 'development';
 
@@ -34,12 +29,10 @@ export default () => {
             },
         },
         modules.defineEnvVariables(),
-        // modules.loadJavaScript(),
-        modules.loadTypeScript(IS_DEVELOPMENT),
+        modules.loadTypeScript(),
         modules.loadGraphQL(),
         modules.loadFonts(),
-        modules.loadImages(),
-        modules.loadSvg(),
+        modules.loadAudio(),
         modules.connectHtml(),
         modules.filterMomentLocales(),
         modules.provideGlobals(),

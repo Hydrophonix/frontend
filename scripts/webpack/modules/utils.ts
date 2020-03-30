@@ -1,5 +1,6 @@
 // Core
 import {
+    Configuration,
     DefinePlugin,
     ProvidePlugin,
     HotModuleReplacementPlugin,
@@ -10,19 +11,19 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import dotenv from 'dotenv';
 
-export const connectBuildProgressIndicator = () => ({
+export const connectBuildProgressIndicator = (): Configuration => ({
     plugins: [ new WebpackBar() ],
 });
 
-export const connectFriendlyErrors = () => ({
+export const connectFriendlyErrors = (): Configuration => ({
     plugins: [ new FriendlyErrorsWebpackPlugin() ],
 });
 
-export const connectHMR = () => ({
+export const connectHMR = (): Configuration => ({
     plugins: [ new HotModuleReplacementPlugin() ],
 });
 
-export const cleanDirectories = () => ({
+export const cleanDirectories = (): Configuration => ({
     plugins: [
         new CleanWebpackPlugin({
             verbose: true,
@@ -30,7 +31,7 @@ export const cleanDirectories = () => ({
     ],
 });
 
-export const connectBundleAnalyzer = () => ({
+export const connectBundleAnalyzer = (): Configuration => ({
     plugins: [
         new BundleAnalyzerPlugin({
             analyzerMode:      'disabled',
@@ -40,7 +41,7 @@ export const connectBundleAnalyzer = () => ({
     ],
 });
 
-export const defineEnvVariables = () => ({
+export const defineEnvVariables = (): Configuration => ({
     plugins: [
         new DefinePlugin({
             'process.env': JSON.stringify({
@@ -50,7 +51,7 @@ export const defineEnvVariables = () => ({
     ],
 });
 
-export const provideGlobals = () => ({
+export const provideGlobals = (): Configuration => ({
     plugins: [
         new ProvidePlugin({
             React: 'react',

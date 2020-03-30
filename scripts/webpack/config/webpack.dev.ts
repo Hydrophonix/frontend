@@ -2,12 +2,12 @@
 import merge from 'webpack-merge';
 
 // Configurations
-import getCommonConfig from './webpack.common';
+import { getCommonConfig } from './webpack.common';
 
 // Modules
 import * as modules from '../modules';
 
-export default () => {
+export const getDevConfig = () => {
     return merge(
         getCommonConfig(),
         {
@@ -18,6 +18,7 @@ export default () => {
                 hot: true,
             },
         },
+        modules.loadImagesDev(),
         modules.connectHMR(),
         modules.connectFriendlyErrors(),
     );
