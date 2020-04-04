@@ -7,7 +7,7 @@ interface ToggleButtonProps {
 }
 
 interface ToggleProps extends ToggleButtonProps {
-    onChange: Function;
+    onChange: (value: boolean) => void;
 }
 
 export const Toggle: FC<ToggleProps> = ({ active, onChange }) => {
@@ -22,6 +22,7 @@ export const Toggle: FC<ToggleProps> = ({ active, onChange }) => {
 
 // Styles
 const ToggleContainer = styled.div`
+    background: none;
     cursor: pointer;
     position: relative;
     width: 40px;
@@ -35,14 +36,14 @@ const ToggleBar = styled.div`
     width: 30px;
     height: 14px;
     border-radius: 8px;
-    background-color: ${({ theme }) => theme.secondary}; 
+    background-color: ${({ theme: { primaryVariant }}) => primaryVariant}; 
 `;
 
 const ToggleButton = styled.div<ToggleButtonProps>`
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: red;
+    background-color: ${({ theme: { error }}) => error};
     border-radius: 10px;
     top: 0;
     left: 0;

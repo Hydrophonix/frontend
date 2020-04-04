@@ -4,7 +4,7 @@ import jwtDecode from 'jwt-decode';
 
 // Instruments
 import { getAccessToken, setAccessToken } from '../tokenStore';
-import { TOKEN_URL} from  '../constants';
+import { TOKEN_URL } from  '../constants';
 
 export const tokenRefreshLink = new TokenRefreshLink({
     accessTokenField:        'accessToken',

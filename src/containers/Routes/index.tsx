@@ -1,40 +1,52 @@
 // Core
-import React, { Suspense } from 'react';
+import React, { FC, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 // Pages
 import * as P from '../../pages';
 
-export const Routes: React.FC = () => {
+// Elements
+import { Spinner } from '../../elements';
+
+export const RoutesPath = {
+    Main:     '/',
+    Register: '/register',
+    Login:    '/login',
+    Me:       '/me',
+    Game:     '/game',
+    Todos:    '/todos',
+};
+
+export const Routes: FC = () => {
     return (
-        <Suspense fallback = { <div>Loading page...</div> }>
+        <Suspense fallback = { <Spinner/> }>
             <Switch>
                 <Route
                     exact
-                    path = '/register'>
+                    path = { RoutesPath.Register }>
                     <P.Register />
                 </Route>
                 <Route
                     exact
-                    path = '/login'>
+                    path = { RoutesPath.Login }>
                     <P.Login />
                 </Route>
                 <Route
                     exact
-                    path = '/me'>
+                    path = { RoutesPath.Me }>
                     <P.Me />
                 </Route>
                 <Route
                     exact
-                    path = '/game'>
+                    path = { RoutesPath.Game }>
                     <P.Game />
                 </Route>
                 <Route
                     exact
-                    path = '/todos'>
+                    path = { RoutesPath.Todos }>
                     <P.Todos />
                 </Route>
-                <Route path = '/'>
+                <Route path = { RoutesPath.Main }>
                     <P.Main />
                 </Route>
             </Switch>

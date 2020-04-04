@@ -8,7 +8,8 @@
         "build": "cross-env-shell NODE_ENV=production ts-node -P \"./tsconfig.webpack.json\" \"./scripts/webpack/build\"",
         "analyze": "webpack-bundle-analyzer \"./build/stats.json\"",
         "serve": "serve \"./build\" -s",
-        "gen": "graphql-codegen --config graphql-codegen.yml",
+        "gen": "npm run apollo:push && npm run apollo:schema && npm run apollo:gen",
+        "apollo:push": "apollo service:push",
         "apollo:schema": "apollo service:download graphqlSchema.json",
         "apollo:gen": "apollo codegen:generate --localSchemaFile=graphqlSchema.json --target=typescript --globalTypesFile=src/@types/graphql-global-types.ts \"../types\""
     },

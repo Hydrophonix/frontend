@@ -1,20 +1,22 @@
-import { grey, red, yellow } from '../colors';
+import { grey, red, blue } from '../colors';
 
 export const dark = {
-    name:             'dark',
+    name:                'dark',
     // Main
-    primary:          grey[ 200 ],
-    primaryVariant:   grey[ 400 ],
-    secondary:        yellow[ 300 ],
-    secondaryVariant: yellow[ 500 ],
+    primary:             grey[ 900 ],
+    primaryVariant:      grey[ 600 ],
+    secondary:           blue.A700,
+    secondaryVariant:    blue.A400,
     // Background
-    background:       grey[ 50 ],
-    surface:          grey[ 100 ],
-    error:            red[ 100 ],
+    background:          grey[ 800 ],
+    surface:             blue[ 900 ],
+    error:               red.A700,
+    errorVariant:        red.A400,
     // Text
-    onPrimary:        '#000',
-    onSecondary:      '#000',
-    onBackground:     '#000',
-    onSurface:        '#000',
-    onError:          '#000',
+    onPrimary:           '#FFF',
+    onSecondary:         '#FFF',
+    onBackground:        '#FFF',
+    onBackgroundVariant: grey[ 400 ],
+    onSurface:           '#FFF',
+    onError:             '#FFF',
 };

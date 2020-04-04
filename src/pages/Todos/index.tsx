@@ -4,30 +4,19 @@ import React from 'react';
 // Components
 import { ErrorBoundary } from '../../components';
 import { CreateTodo } from './CreateTodo';
-
-// Hooks
-import { useTodosQuery } from '../../bus';
+import { TodoList } from './TodoList';
 
 // Assets
-import { TodosContainer } from './styles';
+import { TodosContainer, Header } from './styles';
 
 type TodoProps = {}
 
 const Todo: React.FC<TodoProps> = () => {
-    const { data } = useTodosQuery();
-
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
-
     return (
         <TodosContainer>
-            <h2>TODOS</h2>
-            <div>KEK Todo</div>
+            <Header>TODOS</Header>
             <CreateTodo />
-            {data?.todos.map((todo) => {
-                return <div key = { todo.id }>{todo.title}</div>;
-            })}
+            <TodoList />
         </TodosContainer>
     );
 };

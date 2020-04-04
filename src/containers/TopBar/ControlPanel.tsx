@@ -1,6 +1,7 @@
 // Core
-import React, { FC, memo, useState } from 'react';
+import React, { FC, memo, useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ThemeContext } from 'styled-components';
 
 // Elements
 import { Toggle } from '../../elements';
@@ -10,34 +11,40 @@ import { ControlPanelContainer } from './styles';
 
 export interface ControlPanelProps {
     isDefaultTheme: boolean;
-    toggleDefaultTheme: Function;
+    setIsDefaultTheme: (value: boolean) => void;
 }
 
-export const ControlPanel: FC<ControlPanelProps> = memo(({ isDefaultTheme, toggleDefaultTheme }) => {
+export const ControlPanel: FC<ControlPanelProps> = memo(({ isDefaultTheme, setIsDefaultTheme }) => {
     const [ isSunHover, setIsSunHover ] = useState(false);
     const [ isMoonHover, setIsMoonHover ] = useState(false);
+    const { secondary, primaryVariant } = useContext(ThemeContext);
 
     return (
         <ControlPanelContainer>
             <FontAwesomeIcon
+                color = { isDefaultTheme ? secondary : primaryVariant }
+                cursor = 'pointer'
                 icon = 'sun'
                 size = 'lg'
-                spin = { isSunHover }
+                spin = { !isDefaultTheme && isSunHover }
+                title = 'Light Theme'
+                onClick = { () =>  setIsDefaultTheme(true) }
                 onMouseEnter = { () => setIsSunHover(true) }
                 onMouseLeave = { () => setIsSunHover(false) }
             />
             <Toggle
                 active = { isDefaultTheme }
-                onChange = { toggleDefaultTheme }
+                onChange = { setIsDefaultTheme }
             />
             <FontAwesomeIcon
-                // pulse
-                color = '#a3a'
+                color = { isDefaultTheme ? primaryVariant : secondary }
+                cursor = 'pointer'
                 icon = 'moon'
                 size = 'lg'
-                spin = { isMoonHover }
-                title = 'kek'
-                onMouseEnter = { () =>setIsMoonHover(true) }
+                spin = { isDefaultTheme && isMoonHover }
+                title = 'Dark Theme'
+                onClick = { () =>  setIsDefaultTheme(false) }
+                onMouseEnter = { () => setIsMoonHover(true) }
                 onMouseLeave = { () => setIsMoonHover(false) }
             />
         </ControlPanelContainer>

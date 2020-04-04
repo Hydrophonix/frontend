@@ -1,57 +1,34 @@
 // Core
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 // Components
-import { ErrorBoundary } from '../../components';
+import { ErrorBoundary, Form } from '../../components';
 
 // Hooks
-import { useRegisterMutation } from '../../bus';
+import { Register as RegisterResponse } from '../../bus';
+
+// Instruments
 import { setAccessToken } from '../../tokenStore';
+
+// Assets
+import { RegisterContainer } from './styles';
 
 type RegisterProps = {}
 
 const Register: FC<RegisterProps> = () => {
-    const [ email, setEmail ] = useState('');
-    const [ password, setPassword ] = useState('');
-    // const [ register, { loading, error }] = useRegisterMutation();
-    const [ register ] = useRegisterMutation();
+    const handleRegister = (response: RegisterResponse) => {
+        setAccessToken(response?.registerWeb?.accessToken);
+    };
 
     return (
-        <div>
+        <RegisterContainer>
             <div>KEK Register</div>
-            <form onSubmit = { async (event) => {
-                event.preventDefault();
-
-                const response = await register({
-                    variables: {
-                        input: { email, password },
-                    },
-                });
-                console.log('"|_(ʘ_ʘ)_/" =>: response', response);
-
-                if (response && response.data) {
-                    setAccessToken(response.data.registerWeb.accessToken);
-                }
-            } }>
-                <div>
-                    <input
-                        placeholder = 'enter email'
-                        value = { email }
-                        onChange = { (event) => setEmail(event.target.value) }
-                    />
-                </div>
-                <div>
-                    <input
-                        placeholder = 'enter password'
-                        value = { password }
-                        onChange = { (event) => setPassword(event.target.value) }
-                    />
-                </div>
-                <div>
-                    <button type = 'submit'>Registr!1!</button>
-                </div>
-            </form>
-        </div>
+            <Form
+                buttonText = 'Register'
+                callback = { handleRegister }
+                mutation = 'register'
+            />
+        </RegisterContainer>
     );
 };
 

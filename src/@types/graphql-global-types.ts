@@ -14,7 +14,7 @@ export interface AuthInput {
 
 export interface TodoInput {
   title: string;
-  text: string;
+  text?: string | null;
 }
 
 export interface TodoUpdateInput {

@@ -1,20 +1,22 @@
 import { grey, red, yellow } from '../colors';
 
 export const defaultLight = {
-    name:             'defaultLight',
+    name:                'defaultLight',
     // Main
-    primary:          grey[ 200 ],
-    primaryVariant:   grey[ 400 ],
-    secondary:        yellow[ 300 ],
-    secondaryVariant: yellow[ 500 ],
+    primary:             grey[ 400 ],
+    primaryVariant:      grey[ 100 ],
+    secondary:           yellow.A700,
+    secondaryVariant:    yellow.A400,
     // Background
-    background:       grey[ 50 ],
-    surface:          grey[ 100 ],
-    error:            red[ 100 ],
+    background:          grey[ 300 ],
+    surface:             yellow[ 700 ],
+    error:               red[ 200 ],
+    errorVariant:        red[ 500 ],
     // Text
-    onPrimary:        '#000',
-    onSecondary:      '#000',
-    onBackground:     '#000',
-    onSurface:        '#000',
-    onError:          '#000',
+    onPrimary:           '#000',
+    onSecondary:         '#000',
+    onBackground:        '#000',
+    onBackgroundVariant: grey[ 600 ],
+    onSurface:           '#000',
+    onError:             '#000',
 };

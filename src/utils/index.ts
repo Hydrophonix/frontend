@@ -1,4 +1,7 @@
-export const transformStyleObjectToText = (styles: {}): string => {
+export * from './input';
+
+export const transformStylesObjectToString = (styles: {}): string => {
     return Object.entries(styles)
         .reduce((acc, [ key, value ]) => `${acc} ${key}:${value}`, '');
 };
+

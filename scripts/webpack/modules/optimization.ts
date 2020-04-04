@@ -133,6 +133,8 @@ export const loadImagesProd = (): Configuration => ({
                     'file-loader',
                     {
                         loader:  'image-webpack-loader',
+                        // https://github.com/tcoopman/image-webpack-loader
+                        // options and links
                         options: {
                             mozjpeg: {
                                 progressive: true,

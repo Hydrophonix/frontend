@@ -20,14 +20,14 @@ import { setAccessToken } from '../../tokenStore';
 import { TOKEN_URL } from '../../constants';
 
 // Assets
-import { GlobalStyles, defaultLight, dark } from '../../assets';
+import { GlobalStyles, StylesReset, defaultLight, dark } from '../../assets';
 import { AppContainer } from './styles';
 
 const history = createBrowserHistory();
 
 export const App: FC = () => {
     const [ loading, setLoading ] = useState(true);
-    const [ isDefaultTheme, toggleDefaultTheme ] = useLocalStorage('defaultTheme', true);
+    const [ isDefaultTheme, setIsDefaultTheme ] = useLocalStorage('isDefaultTheme', true);
 
     useEffect(() => {
         fetch(TOKEN_URL, { credentials: 'include', method: 'POST' })
@@ -52,11 +52,12 @@ export const App: FC = () => {
         <ApolloProvider client = { client }>
             <Router history = { history }>
                 <ThemeProvider theme = { isDefaultTheme ? defaultLight : dark } >
+                    <StylesReset />
                     <GlobalStyles />
                     <AppContainer>
                         <TopBar
                             isDefaultTheme = { isDefaultTheme }
-                            toggleDefaultTheme = { toggleDefaultTheme }
+                            setIsDefaultTheme = { setIsDefaultTheme }
                         />
                         <Routes />
                     </AppContainer>

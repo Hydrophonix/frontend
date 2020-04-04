@@ -2,19 +2,20 @@
 import styled from 'styled-components';
 
 export const TopBarContainer = styled.div`
-    background-color: ${(props) => props.theme.background};
     height: 200px;
     width: 100%;
-    border-bottom: 1px solid black;
     margin-bottom: 15px;
+    background: none;
 `;
 
 export const ControlPanelContainer = styled.div`
+    background: none;
     display: flex;
     width: 100px;
 `;
 
 export const NavigationContainer = styled.div`
+    background: none;
     width: 100%;
     display: flex;
     justify-content: center;
