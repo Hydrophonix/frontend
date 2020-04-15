@@ -4,18 +4,13 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: Todos
+// GraphQL mutation operation: DeleteTodo
 // ====================================================
 
-export interface Todos_todos {
-  __typename: "Todo";
-  id: string;
-  done: boolean;
-  text: string | null;
-  title: string;
-  ownerId: string | null;
+export interface DeleteTodo {
+  deleteTodo: string;
 }
 
-export interface Todos {
-  todos: Todos_todos[];
+export interface DeleteTodoVariables {
+  id: string;
 }

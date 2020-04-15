@@ -42,3 +42,18 @@ export const formatInputErrors = (error: ApolloError): any => {
 
     return inputErrors;
 };
+
+// TODO: type better
+export const formatInputForServer = (input: Record<string, any>) => {
+    const arr = Object.entries(input);
+    const formattedArray = arr.map(([ key, value ]): [string, string|number|null] => [ key, value ? value : null ]);
+
+    return Object.fromEntries(formattedArray);
+};
+
+export const formatInputForComponent = (input: Record<string, any>) => {
+    const arr = Object.entries(input);
+    const formattedArray = arr.map(([ key, value ]): [string, string|number] => [ key, value ? value : '' ]);
+
+    return Object.fromEntries(formattedArray);
+};

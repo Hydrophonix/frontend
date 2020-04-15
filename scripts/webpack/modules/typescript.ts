@@ -15,7 +15,7 @@ export const loadTypeScript = (): Configuration => ({
                 include: /src/,
                 exclude: /node_modules/,
                 use:     {
-                    loader:  'awesome-typescript-loader',
+                    loader:  'ts-loader',
                     options: {
                         getCustomTransformers: () => ({ before: [ styledComponentsTransformer ]}),
                     },

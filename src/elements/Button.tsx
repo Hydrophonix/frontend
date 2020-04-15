@@ -35,6 +35,7 @@ export const Button: FC<ButtonProps> = ({ children, withSound, ...otherProps }) 
     );
 };
 
+// Styles
 const Styled = styled.button<ButtonProps>`
     cursor: pointer;
     outline: none;

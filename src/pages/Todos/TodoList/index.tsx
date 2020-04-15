@@ -17,6 +17,7 @@ interface TodoListProps {}
 
 export const TodoList: FC<TodoListProps> = () => {
     const { data, loading } = useTodosQuery();
+    console.log('"|_(ʘ_ʘ)_/" =>: data', data);
 
     return (
         <TodoListContainer>

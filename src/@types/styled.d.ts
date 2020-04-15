@@ -1,12 +1,9 @@
 // Core
 import 'styled-components';
 
-// Assets
-import { defaultLight as theme } from '../assets/themes/defaultLight';
-
+// Types
+import { Theme } from '../assets';
 
 declare module 'styled-components' {
-    type Theme = typeof theme;
-
     export interface DefaultTheme extends Theme {}
 }

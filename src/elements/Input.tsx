@@ -37,6 +37,7 @@ export const Input: FC<InputProps> = ({ withError, error, width, height, style, 
     );
 };
 
+// Styles
 const StyledInput = styled.input<StyledInputProps>`
     padding: 5px;
     font-size: 16px;

@@ -14,7 +14,7 @@ export interface UpdateTodo_updateTodo {
   id: string;
   done: boolean;
   ownerId: string | null;
-  text: string;
+  text: string | null;
   title: string;
 }
 

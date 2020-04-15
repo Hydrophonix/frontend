@@ -13,7 +13,7 @@ export interface CreateTodo_createTodo {
   __typename: "Todo";
   id: string;
   ownerId: string | null;
-  text: string;
+  text: string | null;
   title: string;
   done: boolean;
 }

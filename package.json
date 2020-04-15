@@ -59,7 +59,6 @@
         "@typescript-eslint/parser": "^2.23.0",
         "apollo": "^2.25.0",
         "app-root-path": "2.1.0",
-        "awesome-typescript-loader": "^5.2.1",
         "babel-eslint": "10.0.1",
         "babel-loader": "^8.0.6",
         "babel-plugin-dynamic-import-node": "^2.3.0",
