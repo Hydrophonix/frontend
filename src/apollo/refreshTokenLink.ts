@@ -27,14 +27,17 @@ export const tokenRefreshLink = new TokenRefreshLink({
             return false;
         }
     },
-    fetchAccessToken: () => {
-        return fetch(TOKEN_URL, {
+    fetchAccessToken: async () => {
+        const result = await fetch(TOKEN_URL, {
             method:      'POST',
             credentials: 'include',
         });
+        console.log('"|_(ʘ_ʘ)_/" =>: result', result);
+
+        return result;
     },
     handleFetch: (accessToken) => {
-    // const accessTokenDecrypted = jwtDecode(accessToken);
+        // const accessTokenDecrypted = jwtDecode(accessToken);
         setAccessToken(accessToken);
     // setExpiresIn(parseExp(accessTokenDecrypted.exp).toString());
     },

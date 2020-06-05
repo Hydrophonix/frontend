@@ -25,7 +25,6 @@ const Login:FC<LoginProps> = () => {
                 const response = await login({
                     variables: { input: { email, password }},
                 });
-                console.log('"|_(ʘ_ʘ)_/" =>: response', response);
 
                 if (response && response.data) {
                     setAccessToken(response.data.loginWeb.accessToken);

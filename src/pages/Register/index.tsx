@@ -4,11 +4,11 @@ import React, { FC } from 'react';
 // Components
 import { ErrorBoundary, Form } from '../../components';
 
-// Hooks
-import { Register as RegisterResponse } from '../../bus';
-
 // Instruments
 import { setAccessToken } from '../../tokenStore';
+
+// Types
+import { Register as RegisterResponse } from '../../bus';
 
 // Assets
 import { RegisterContainer } from './styles';

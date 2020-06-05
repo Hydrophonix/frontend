@@ -4,6 +4,6 @@ query Todos {
         done
         text
         title
-        ownerId
+        # ownerId
     }
 }

@@ -1,7 +1,7 @@
 mutation CreateTodo($input: TodoInput!) {
     createTodo(input: $input) {
         id
-        ownerId
+        # ownerId
         text
         title
         done

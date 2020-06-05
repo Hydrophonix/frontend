@@ -2,7 +2,7 @@ mutation UpdateTodo($input: TodoUpdateInput!, $id: String!) {
     updateTodo(input: $input , id: $id) {
         id
         done
-        ownerId
+        # ownerId
         text
         title
     }

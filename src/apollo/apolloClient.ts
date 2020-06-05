@@ -6,9 +6,9 @@ import { ApolloLink } from 'apollo-link';
 
 // Instruments
 import { GRAPHQL_URL }      from '../constants';
-import { tokenRefreshLink } from './token';
-import { errorLink }        from './errors';
-import { requestLink }      from './requestHeaders';
+import { tokenRefreshLink } from './refreshTokenLink';
+import { errorLink }        from './errorLink';
+import { requestLink }      from './requestLink';
 
 export const client = new ApolloClient({
     link: ApolloLink.from([
