@@ -28,13 +28,11 @@ export const getCommonConfig = () => {
                 extensions: [ '.tsx', '.ts', '.js', '.jsx' ],
             },
         },
-        modules.defineEnvVariables(),
         modules.loadTypeScript(),
         modules.loadGraphQL(),
         modules.loadFonts(),
         modules.loadAudio(),
         modules.connectHtml(),
-        modules.filterMomentLocales(),
         modules.provideGlobals(),
     );
 };

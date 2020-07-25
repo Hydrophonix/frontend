@@ -18,7 +18,9 @@ export const getDevConfig = () => {
                 hot: true,
             },
         },
+        modules.defineEnvVariables(false),
         modules.loadImagesDev(),
+        modules.loadDevCss(),
         modules.connectHMR(),
         modules.connectFriendlyErrors(),
     );

@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 // Core
-import * as ApolloReactHooks from '@apollo/react-hooks';
+import { QueryHookOptions } from '@apollo/client';
 
 // Hooks
 import { useCustomQuery } from '../../../hooks';
@@ -11,6 +11,6 @@ import LoginSchema from '../schemas/me.graphql';
 // Types
 import { Me } from '../types';
 
-export const useMeQuery = (baseOptions?: ApolloReactHooks.MutationHookOptions<Me, {}>) => {
+export const useMeQuery = (baseOptions?: QueryHookOptions<Me, {}>) => {
     return useCustomQuery<Me, {}>(LoginSchema, baseOptions);
 };

@@ -13,7 +13,6 @@ export interface UpdateTodo_updateTodo {
   __typename: "Todo";
   id: string;
   done: boolean;
-  ownerId: string | null;
   text: string | null;
   title: string;
 }

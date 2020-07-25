@@ -12,8 +12,7 @@ import { AuthInput } from "./../../../@types/graphql-global-types";
 export interface Login_loginWeb_user {
   __typename: "User";
   id: string;
-  email: string;
-  testbig: string;
+  name: string;
 }
 
 export interface Login_loginWeb {

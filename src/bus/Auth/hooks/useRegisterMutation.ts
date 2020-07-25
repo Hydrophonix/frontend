@@ -1,5 +1,5 @@
 // Core
-import { MutationHookOptions, useMutation } from '@apollo/react-hooks';
+import { MutationHookOptions, useMutation } from '@apollo/client';
 
 // GraphQL
 import RegisterSchema from '../schemas/register.graphql';

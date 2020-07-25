@@ -2,8 +2,7 @@ mutation Register ($input: AuthInput!) {
     registerWeb(input: $input) {
         user {
             id
-            email
-            testbig
+            name
         }
         accessToken
     }

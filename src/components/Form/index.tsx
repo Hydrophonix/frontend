@@ -28,7 +28,7 @@ const mutationsMap: MutationsMap = {
 };
 
 const authInput: AuthInput = {
-    email:    '',
+    name:     '',
     password: '',
 };
 

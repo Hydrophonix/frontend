@@ -4,15 +4,9 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: Users
+// GraphQL mutation operation: ForceLogout
 // ====================================================
 
-export interface Users_users {
-  __typename: "User";
-  id: string;
-  email: string;
-}
-
-export interface Users {
-  users: Users_users[];
+export interface ForceLogout {
+  forceLogoutWeb: boolean;
 }

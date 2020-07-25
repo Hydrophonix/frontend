@@ -26,7 +26,11 @@ export const loadTypeScript = (): Configuration => ({
                 enforce: 'pre',
                 test:    /\.js$/,
                 loader:  'source-map-loader',
-                exclude: [ nodeModulePath('apollo-link-token-refresh') ],
+                exclude: [
+                    nodeModulePath('@apollo/client/link/error'),
+                    nodeModulePath('@apollo/client/utilities/observables'),
+                    nodeModulePath('apollo-link-token-refresh'),
+                ],
             },
         ],
     },

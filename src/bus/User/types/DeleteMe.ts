@@ -4,15 +4,9 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: Me
+// GraphQL mutation operation: DeleteMe
 // ====================================================
 
-export interface Me_me {
-  __typename: "User";
-  id: string;
-  name: string;
-}
-
-export interface Me {
-  me: Me_me;
+export interface DeleteMe {
+  deleteMe: boolean;
 }

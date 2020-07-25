@@ -1,12 +1,12 @@
 // Core
-import * as ApolloReactHooks from '@apollo/react-hooks';
+import { QueryHookOptions, useQuery } from '@apollo/client';
 import { DocumentNode } from 'graphql';
 
 export const useCustomQuery = <TData, TVariables> (
     query: DocumentNode,
-    options?: ApolloReactHooks.QueryHookOptions<TData, TVariables>,
+    options?: QueryHookOptions<TData, TVariables>,
 ) => {
-    const result = ApolloReactHooks.useQuery<TData, TVariables>(query, options);
+    const result = useQuery<TData, TVariables>(query, options);
 
     // Throw API error
     if (result.error) {

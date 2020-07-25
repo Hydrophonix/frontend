@@ -26,7 +26,7 @@ const Me: React.FC<MeProps> = () => {
         <div>
             <p>KEK me</p>
             <div>KEK Me</div>
-            {data?.me?.email}
+            {data?.me?.name}
         </div>
     );
 };

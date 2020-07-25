@@ -8,5 +8,5 @@
 // ====================================================
 
 export interface Logout {
-  logout: boolean;
+  logoutWeb: boolean;
 }

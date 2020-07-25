@@ -7,7 +7,6 @@ import {
 } from 'webpack';
 import WebpackBar from 'webpackbar';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import dotenv from 'dotenv';
 
@@ -23,14 +22,6 @@ export const connectHMR = (): Configuration => ({
     plugins: [ new HotModuleReplacementPlugin() ],
 });
 
-export const cleanDirectories = (): Configuration => ({
-    plugins: [
-        new CleanWebpackPlugin({
-            verbose: true,
-        }),
-    ],
-});
-
 export const connectBundleAnalyzer = (): Configuration => ({
     plugins: [
         new BundleAnalyzerPlugin({
@@ -41,11 +32,11 @@ export const connectBundleAnalyzer = (): Configuration => ({
     ],
 });
 
-export const defineEnvVariables = (): Configuration => ({
+export const defineEnvVariables = (isProd: boolean): Configuration => ({
     plugins: [
         new DefinePlugin({
             'process.env': JSON.stringify({
-                ...dotenv.config().parsed,
+                ...dotenv.config({ path: isProd ? 'prod.env' : '.env' }).parsed,
             }),
         }),
     ],

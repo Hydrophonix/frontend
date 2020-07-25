@@ -12,13 +12,15 @@ import { TodoInput } from "./../../../@types/graphql-global-types";
 export interface CreateTodo_createTodo {
   __typename: "Todo";
   id: string;
-  ownerId: string | null;
   text: string | null;
   title: string;
   done: boolean;
 }
 
 export interface CreateTodo {
+  /**
+   * test description
+   */
   createTodo: CreateTodo_createTodo;
 }
 

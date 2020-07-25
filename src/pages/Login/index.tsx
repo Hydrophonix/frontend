@@ -13,7 +13,7 @@ import { setAccessToken } from '../../tokenStore';
 type LoginProps = {}
 
 const Login:FC<LoginProps> = () => {
-    const [ email, setEmail ] = useState('');
+    const [ name, setName ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ login ] = useLoginMutation();
 
@@ -23,7 +23,7 @@ const Login:FC<LoginProps> = () => {
             <form onSubmit = { async (event) => {
                 event.preventDefault();
                 const response = await login({
-                    variables: { input: { email, password }},
+                    variables: { input: { name, password }},
                 });
 
                 if (response && response.data) {
@@ -33,8 +33,8 @@ const Login:FC<LoginProps> = () => {
                 <div>
                     <input
                         placeholder = 'enter email'
-                        value = { email }
-                        onChange = { (event) => setEmail(event.target.value) }
+                        value = { name }
+                        onChange = { (event) => setName(event.target.value) }
                     />
                 </div>
                 <div>

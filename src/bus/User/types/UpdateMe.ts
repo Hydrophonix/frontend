@@ -3,16 +3,22 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { UserUpdateInput } from "./../../../@types/graphql-global-types";
+
 // ====================================================
-// GraphQL query operation: Me
+// GraphQL mutation operation: UpdateMe
 // ====================================================
 
-export interface Me_me {
+export interface UpdateMe_updateMe {
   __typename: "User";
   id: string;
   name: string;
 }
 
-export interface Me {
-  me: Me_me;
+export interface UpdateMe {
+  updateMe: UpdateMe_updateMe;
+}
+
+export interface UpdateMeVariables {
+  input: UserUpdateInput;
 }

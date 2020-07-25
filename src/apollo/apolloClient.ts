@@ -1,8 +1,5 @@
 // Core
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
-import { ApolloLink } from 'apollo-link';
+import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client';
 
 // Instruments
 import { GRAPHQL_URL }      from '../constants';

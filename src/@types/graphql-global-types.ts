@@ -8,7 +8,7 @@
 //==============================================================
 
 export interface AuthInput {
-  email: string;
+  name: string;
   password: string;
 }
 
@@ -21,6 +21,12 @@ export interface TodoUpdateInput {
   title?: string | null;
   text?: string | null;
   done?: boolean | null;
+}
+
+export interface UserUpdateInput {
+  phone?: string | null;
+  name?: string | null;
+  email?: string | null;
 }
 
 //==============================================================

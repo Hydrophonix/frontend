@@ -2,11 +2,12 @@
 import React, { useEffect, FC, useState } from 'react';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloProvider } from '@apollo/client';
 import { ThemeProvider } from 'styled-components';
 
 // Data Store
 import { client } from '../../apollo';
+console.log('"|_(ʘ_ʘ)_/" =>: client', client);
 
 // Containers
 import { Routes } from '../Routes';

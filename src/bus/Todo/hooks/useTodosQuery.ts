@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 // Core
-import * as ApolloReactHooks from '@apollo/react-hooks';
+import { QueryHookOptions } from '@apollo/client';
 
 // Hooks
 import { useCustomQuery } from '../../../hooks';
@@ -11,6 +11,6 @@ import TodosSchema from '../schemas/todos.graphql';
 // Types
 import { Todos } from '../types';
 
-export const useTodosQuery = (baseOptions?: ApolloReactHooks.MutationHookOptions<Todos, {}>) => {
+export const useTodosQuery = (baseOptions?: QueryHookOptions<Todos, {}>) => {
     return useCustomQuery<Todos, {}>(TodosSchema, baseOptions);
 };

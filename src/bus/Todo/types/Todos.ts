@@ -13,7 +13,6 @@ export interface Todos_todos {
   done: boolean;
   text: string | null;
   title: string;
-  ownerId: string | null;
 }
 
 export interface Todos {
