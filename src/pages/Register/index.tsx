@@ -5,19 +5,23 @@ import React, { FC } from 'react';
 import { ErrorBoundary, Form } from '../../components';
 
 // Instruments
-import { setAccessToken } from '../../tokenStore';
+import { accessToken } from '../../apollo';
 
 // Types
 import { Register as RegisterResponse } from '../../bus';
 
 // Assets
 import { RegisterContainer } from './styles';
+import { useLoggedIn } from '../../hooks';
 
 type RegisterProps = {}
 
 const Register: FC<RegisterProps> = () => {
+    const { setIsLoggedInToLocalStorage } = useLoggedIn();
+
     const handleRegister = (response: RegisterResponse) => {
-        setAccessToken(response?.registerWeb?.accessToken);
+        accessToken(response?.registerWeb?.accessToken);
+        setIsLoggedInToLocalStorage(true);
     };
 
     return (

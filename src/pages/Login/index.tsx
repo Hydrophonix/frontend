@@ -6,9 +6,10 @@ import { ErrorBoundary } from '../../components';
 
 // Hooks
 import { useLoginMutation } from '../../bus';
+import { useLoggedIn } from '../../hooks';
 
 // Instruments
-import { setAccessToken } from '../../tokenStore';
+import { accessToken } from '../../apollo';
 
 type LoginProps = {}
 
@@ -16,6 +17,7 @@ const Login:FC<LoginProps> = () => {
     const [ name, setName ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ login ] = useLoginMutation();
+    const { setIsLoggedInToLocalStorage } = useLoggedIn();
 
     return (
         <div>
@@ -27,7 +29,8 @@ const Login:FC<LoginProps> = () => {
                 });
 
                 if (response && response.data) {
-                    setAccessToken(response.data.loginWeb.accessToken);
+                    accessToken(response.data.loginWeb.accessToken);
+                    setIsLoggedInToLocalStorage(true);
                 }
             } }>
                 <div>

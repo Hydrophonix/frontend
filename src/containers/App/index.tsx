@@ -1,69 +1,102 @@
 // Core
-import React, { useEffect, FC, useState } from 'react';
-import { Router } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-import { ApolloProvider } from '@apollo/client';
-import { ThemeProvider } from 'styled-components';
-
-// Data Store
-import { client } from '../../apollo';
-console.log('"|_(ʘ_ʘ)_/" =>: client', client);
+import React, { useEffect, FC, useState  } from 'react';
 
 // Containers
 import { Routes } from '../Routes';
 import { TopBar } from '../TopBar';
 
+// Elements
+import { Spinner } from '../../elements';
+
 // Hooks
-import { useLocalStorage } from '../../hooks';
+import { useDarkMode, useLoggedIn } from '../../hooks';
+import { useAppState, useDispatch } from '../../context';
 
 // Instruments
-import { setAccessToken } from '../../tokenStore';
-import { TOKEN_URL } from '../../constants';
+import { accessToken } from '../../apollo';
+import { fetchAccessToken } from '../../utils';
+import { APP_NAME } from '../../constants';
 
 // Assets
-import { GlobalStyles, StylesReset, defaultLight, dark } from '../../assets';
 import { AppContainer } from './styles';
 
-const history = createBrowserHistory();
+type TFetchAccessTokenResponse = {
+    success: boolean;
+    accessToken: string;
+}
 
 export const App: FC = () => {
     const [ loading, setLoading ] = useState(true);
-    const [ isDefaultTheme, setIsDefaultTheme ] = useLocalStorage('isDefaultTheme', true);
+    const { setIsLoggedInToLocalStorage, setIsLoggedIn } = useLoggedIn();
+    const { setIsDarkMode } = useDarkMode();
+    const { isOnline } = useAppState();
+    const dispatch = useDispatch();
 
+    // Refresh session
     useEffect(() => {
-        fetch(TOKEN_URL, { credentials: 'include', method: 'POST' })
-            .then(async (res) => {
-                const { accessToken, ok } = await res.json();
-                console.log('"|_(ʘ_ʘ)_/" =>: App:FC -> ok', ok);
-                setAccessToken(accessToken);
-                setLoading(false);
-            });
+        if (isOnline) {
+            setLoading(true);
+            fetchAccessToken()
+                .then((response) => response.json())
+                .then((response: TFetchAccessTokenResponse) => {
+                    if (response.success) {
+                        accessToken(response.accessToken);
+                        setIsLoggedInToLocalStorage(true);
+                    } else {
+                        setIsLoggedInToLocalStorage(false);
+                    }
+
+                    setLoading(false);
+                });
+        }
+    }, [ isOnline ]);
+
+    // App listeners
+    useEffect(() => {
+        const onStatusChange = () => dispatch({
+            type:  'setIsOnline',
+            value: window.navigator.onLine,
+        });
+        window.addEventListener('online', onStatusChange);
+        window.addEventListener('offline', onStatusChange);
+        window.addEventListener('storage', (event) => {
+            switch (event.key) {
+                case `${APP_NAME}:isLoggedIn`:
+                    try {
+                        const value: boolean = JSON.parse(event.newValue!);
+                        setIsLoggedIn(value);
+                    } catch (error) {
+                        console.log('useLoggedIn: ', error);
+                    }
+
+                    break;
+
+                case `${APP_NAME}:isDark`:
+                    try {
+                        const value: boolean = JSON.parse(event.newValue!);
+                        setIsDarkMode(value);
+                    } catch (error) {
+                        console.log('useDarkMode: ', error);
+                    }
+
+                    break;
+
+                default:
+                    break;
+            }
+        });
     }, []);
 
-    useEffect(() => {
-        console.log('app rerender');
-    });
-
     if (loading) {
-        console.log('"|_(ʘ_ʘ)_/" =>: App:FC -> loading', loading);
-        // return <div>Loading...</div>;
+        return (
+            <Spinner size = '10x'/>
+        );
     }
 
     return (
-        <ApolloProvider client = { client }>
-            <Router history = { history }>
-                <ThemeProvider theme = { isDefaultTheme ? defaultLight : dark } >
-                    <StylesReset />
-                    <GlobalStyles />
-                    <AppContainer>
-                        <TopBar
-                            isDefaultTheme = { isDefaultTheme }
-                            setIsDefaultTheme = { setIsDefaultTheme }
-                        />
-                        <Routes />
-                    </AppContainer>
-                </ThemeProvider>
-            </Router>
-        </ApolloProvider>
+        <AppContainer>
+            <TopBar/>
+            <Routes />
+        </AppContainer>
     );
 };

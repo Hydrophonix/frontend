@@ -7,46 +7,54 @@ import * as P from '../../pages';
 
 // Elements
 import { Spinner } from '../../elements';
+import { PrivateRoute } from './PrivateRoute';
+import { NotAuthRoute } from './NotAuthRoute';
 
-export const RoutesPath = {
-    Main:     '/',
-    Register: '/register',
-    Login:    '/login',
-    Me:       '/me',
-    Game:     '/game',
-    Todos:    '/todos',
-};
+// Hooks
+import { useAppState } from '../../context';
+
+// Instruments
+import { ROUTE_PATH } from '../../constants';
 
 export const Routes: FC = () => {
+    const { isLoggedIn } = useAppState();
+
     return (
         <Suspense fallback = { <Spinner/> }>
             <Switch>
-                <Route
-                    exact
-                    path = { RoutesPath.Register }>
+                <PrivateRoute
+                    isLoggedIn = { isLoggedIn }
+                    path = { ROUTE_PATH.Profile }>
+                    <P.Profile />
+                </PrivateRoute>
+
+                <NotAuthRoute
+                    isLoggedIn = { isLoggedIn }
+                    path = { ROUTE_PATH.Register }>
                     <P.Register />
-                </Route>
-                <Route
-                    exact
-                    path = { RoutesPath.Login }>
+                </NotAuthRoute>
+                <NotAuthRoute
+                    isLoggedIn = { isLoggedIn }
+                    path = { ROUTE_PATH.Login }>
                     <P.Login />
+                </NotAuthRoute>
+
+                <Route
+                    exact
+                    path = { ROUTE_PATH.Game }>
+                    <P.Game/>
                 </Route>
                 <Route
                     exact
-                    path = { RoutesPath.Me }>
-                    <P.Me />
-                </Route>
-                <Route
-                    exact
-                    path = { RoutesPath.Game }>
-                    <P.Game />
-                </Route>
-                <Route
-                    exact
-                    path = { RoutesPath.Todos }>
+                    path = { ROUTE_PATH.Todos }>
                     <P.Todos />
                 </Route>
-                <Route path = { RoutesPath.Main }>
+                <Route
+                    exact
+                    path = { ROUTE_PATH.Resume }>
+                    <P.Resume />
+                </Route>
+                <Route path = { ROUTE_PATH.Main }>
                     <P.Main />
                 </Route>
             </Switch>

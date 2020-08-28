@@ -2,7 +2,7 @@
 import { ApolloLink, Observable } from '@apollo/client';
 
 // Instruments
-import { getAccessToken } from '../tokenStore';
+import { accessToken } from '../localState';
 
 export const requestLink = new ApolloLink((operation, forward) => new Observable((observer) => {
     let handle: any = null;
@@ -10,7 +10,7 @@ export const requestLink = new ApolloLink((operation, forward) => new Observable
         .then((operation) => {
             operation.setContext({
                 headers: {
-                    authorization: `Bearer ${getAccessToken()}`,
+                    authorization: `Bearer ${accessToken()}`,
                 },
             });
         })

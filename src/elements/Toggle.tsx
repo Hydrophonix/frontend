@@ -8,13 +8,16 @@ interface ToggleButtonProps {
 
 interface ToggleProps extends ToggleButtonProps {
     onChange: (value: boolean) => void;
+    reverse?: boolean;
 }
 
-export const Toggle: FC<ToggleProps> = ({ active, onChange }) => {
+export const Toggle: FC<ToggleProps> = ({ active, onChange, reverse = false }) => {
     return (
-        <ToggleContainer onClick = { () => onChange(!active) }>
+        <ToggleContainer onClick = { () => onChange(reverse ? active : !active) }>
             <ToggleBar>
-                < ToggleButton active = { active }/>
+                < ToggleButton
+                    active = { active }
+                />
             </ToggleBar>
         </ToggleContainer>
     );

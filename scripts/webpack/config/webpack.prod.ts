@@ -17,6 +17,8 @@ export const getProdConfig = () => {
         modules.defineEnvVariables(true),
         modules.loadImagesProd(),
         modules.loadProdCss(),
+        modules.loadPWAManifest(),
+        modules.loadPWAServiceWorker(),
         modules.cleanDirectories(),
         modules.filterLodashModules(),
         modules.filterMomentLocales(),

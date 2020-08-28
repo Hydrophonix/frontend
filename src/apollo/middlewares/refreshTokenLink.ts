@@ -3,13 +3,13 @@ import { TokenRefreshLink } from 'apollo-link-token-refresh';
 import jwtDecode from 'jwt-decode';
 
 // Instruments
-import { getAccessToken, setAccessToken } from '../tokenStore';
-import { TOKEN_URL } from  '../constants';
+import { accessToken } from '../localState';
+import { fetchAccessToken } from '../../utils';
 
 export const tokenRefreshLink = new TokenRefreshLink({
     accessTokenField:        'accessToken',
     isTokenValidOrUndefined: () => {
-        const token = getAccessToken();
+        const token = accessToken();
 
         if (!token) {
             return true;
@@ -27,26 +27,16 @@ export const tokenRefreshLink = new TokenRefreshLink({
             return false;
         }
     },
-    fetchAccessToken: async () => {
-        const result = await fetch(TOKEN_URL, {
-            method:      'POST',
-            credentials: 'include',
-        });
-        console.log('"|_(ʘ_ʘ)_/" =>: result', result);
-
-        return result;
-    },
-    handleFetch: (accessToken) => {
-        // const accessTokenDecrypted = jwtDecode(accessToken);
-        setAccessToken(accessToken);
-    // setExpiresIn(parseExp(accessTokenDecrypted.exp).toString());
+    fetchAccessToken,
+    handleFetch: (newAccessToken) => {
+        accessToken(newAccessToken);
     },
     handleError: (error) => {
-    // full control over handling token fetch Error
+        // full control over handling token fetch Error
         console.warn('Your refresh token is invalid. Try to relogin');
         console.error(error);
 
         // your custom action here
-        setAccessToken('');
+        accessToken(null);
     },
 });

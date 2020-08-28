@@ -1,11 +1,9 @@
 // Core
-import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloLink, InMemoryCache, HttpLink } from '@apollo/client';
 
 // Instruments
-import { GRAPHQL_URL }      from '../constants';
-import { tokenRefreshLink } from './refreshTokenLink';
-import { errorLink }        from './errorLink';
-import { requestLink }      from './requestLink';
+import { GRAPHQL_URL } from '../constants';
+import { tokenRefreshLink, errorLink, requestLink } from './middlewares';
 
 export const client = new ApolloClient({
     link: ApolloLink.from([
@@ -18,40 +16,6 @@ export const client = new ApolloClient({
         }),
     ]),
     cache: new InMemoryCache(),
+    // TODO: check
+    // connectToDevTools
 });
-
-// ----------------------------------------------------------------------------
-// Templates
-// ----------------------------------------------------------------------------
-
-// const cache = new InMemoryCache({
-//   cacheRedirects: {
-//     Query: {
-//       movie: (_, { id }, { getCacheKey }) =>
-//         getCacheKey({ __typename: 'Movie', id });
-//     }
-//   }
-// });
-
-// const client = new ApolloClient({
-//     withClientState({
-//       defaults: {
-//         isConnected: true
-//       },
-//       resolvers: {
-//         Mutation: {
-//           updateNetworkStatus: (_, { isConnected }, { cache }) => {
-//             cache.writeData({ data: { isConnected }});
-//             return null;
-//           }
-//         }
-//       },
-//       cache
-//     }),
-//     new HttpLink({
-//       uri: 'https://w5xlvm3vzz.lp.gql.zone/graphql',
-//       credentials: 'include'
-//     })
-//   ]),
-//   cache
-// });

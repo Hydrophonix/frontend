@@ -1,9 +1,10 @@
 // Core
 import styled from 'styled-components';
 
-export const TodosContainer = styled.div`
-    background: none;
-    width: 100%;
+// Styles
+import { PageContainer } from '../styles';
+
+export const TodosContainer = styled(PageContainer)`
     display: grid;
     grid-template-columns: 1fr 3fr 1fr 7fr 1fr;
     grid-template-rows: 50px auto 30px auto;

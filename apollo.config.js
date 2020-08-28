@@ -7,6 +7,7 @@ module.exports = {
         //     // optional
         //     authorization: 'Bearer lkjfalkfjadkfjeopknavadf'
         //   },
+        tagName:  'graphql',
         includes: [ './src/bus/**/*.graphql' ],
         excludes: [ '**/__tests__/**' ],
     },

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 // Core
 import { QueryHookOptions } from '@apollo/client';
 

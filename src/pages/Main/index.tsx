@@ -8,17 +8,17 @@ import { ErrorBoundary } from '../../components';
 
 
 // Assets
-import { MainContainer, Cell } from './styles';
+import { PageTitle } from '../styles';
+import { MainContainer } from './styles';
 
 const Home: FC = () => {
     return (
         <MainContainer>
-            {Array(15)
-                .fill(1)
-                .map((item, i) => <Cell key = { i }>{item + i}</Cell>)}
+            <PageTitle>About project</PageTitle>
         </MainContainer>
     );
 };
+
 
 export default () => (
     <ErrorBoundary>

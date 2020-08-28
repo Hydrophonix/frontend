@@ -9,9 +9,13 @@ export const TopBarContainer = styled.div`
 `;
 
 export const ControlPanelContainer = styled.div`
-    background: none;
+    width: 250px;
+    height: 30px;
+    padding: 3px;
+    /* background: none; */
     display: flex;
-    width: 100px;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 export const NavigationContainer = styled.div`
@@ -20,4 +24,8 @@ export const NavigationContainer = styled.div`
     display: flex;
     justify-content: center;
     margin: 20px 0;
+`;
+
+export const Flex = styled.div`
+    display: flex;
 `;

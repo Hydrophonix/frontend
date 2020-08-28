@@ -4,8 +4,8 @@ import { Theme } from './types';
 // Assets
 import { grey, red, blue } from '../colors';
 
-export const dark: Theme = {
-    name:                'dark',
+export const darkTheme: Theme = {
+    name:                'darkTheme',
     // Main
     primary:             grey[ 900 ],
     primaryVariant:      grey[ 600 ],

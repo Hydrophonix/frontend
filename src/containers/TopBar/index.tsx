@@ -1,44 +1,20 @@
 // Core
-import React, { useEffect } from 'react';
+import React, { FC } from 'react';
 
 // Components
 import { Navigation } from './Navigation';
-import { ControlPanel, ControlPanelProps } from './ControlPanel';
-
-// Hooks
-// import { useLogoutMutation } from '../../bus';
-
-// Instruments
-// import { setAccessToken } from '../../tokenStore';
+import { ControlPanel } from './ControlPanel';
 
 // Assets
 import { TopBarContainer } from './styles';
 
-interface TopBarProps extends ControlPanelProps {}
+interface TopBarProps {}
 
-export const TopBar: React.FC<TopBarProps> = ({ isDefaultTheme, setIsDefaultTheme }) => {
-    // const [ logout, { client }] = useLogoutMutation();
-
-    useEffect(() => {
-        console.log('TOPBAR RENDER');
-    });
-
+export const TopBar: FC<TopBarProps> = () => {
     return (
         <TopBarContainer>
-            <ControlPanel
-                isDefaultTheme = { isDefaultTheme }
-                setIsDefaultTheme = { setIsDefaultTheme }
-            />
+            <ControlPanel />
             <Navigation />
         </TopBarContainer>
     );
 };
-
-// <div>
-//     <button onClick = { async () => {
-//         await logout();
-//         await client?.clearStore();
-//         setAccessToken('');
-//     } }>LOGOUT
-//     </button>
-// </div>

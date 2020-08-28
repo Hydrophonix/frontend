@@ -1,3 +1,3 @@
-export * from './defaultLight';
-export * from './dark';
+export * from './lightTheme';
+export * from './darkTheme';
 export * from './types';
