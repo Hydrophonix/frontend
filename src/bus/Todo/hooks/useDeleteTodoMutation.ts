@@ -8,17 +8,16 @@ import DeleteTodoSchema from '../schemas/deleteTodo.graphql';
 // Types
 import { DeleteTodo, DeleteTodoVariables, Todos } from '../types';
 
-const defaultOptions: MutationHookOptions<DeleteTodo, DeleteTodoVariables> = {
-    update(cache, { data }) {
-        const { todos } = cache.readQuery<Todos>({ query: TodosSchema })!;
+export const useDeleteTodoMutation = (options?: MutationHookOptions<DeleteTodo, DeleteTodoVariables>) => {
+    return useMutation<DeleteTodo, DeleteTodoVariables>(DeleteTodoSchema, {
+        update(cache, { data }) {
+            const { todos } = cache.readQuery<Todos>({ query: TodosSchema })!;
 
-        cache.writeQuery({
-            query: TodosSchema,
-            data:  { todos: todos.filter(({ id }) => id !== data!.deleteTodo) },
-        });
-    },
-};
-
-export const useDeleteTodoMutation = (baseOptions = defaultOptions) => {
-    return useMutation<DeleteTodo, DeleteTodoVariables>(DeleteTodoSchema, baseOptions);
+            cache.writeQuery({
+                query: TodosSchema,
+                data:  { todos: todos.filter(({ id }) => id !== data!.deleteTodo) },
+            });
+        },
+        ...options,
+    });
 };

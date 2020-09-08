@@ -29,7 +29,7 @@ export const App: FC = () => {
     const [ loading, setLoading ] = useState(true);
     const { setIsLoggedInToLocalStorage, setIsLoggedIn } = useLoggedIn();
     const { setIsDarkMode } = useDarkMode();
-    const { isOnline } = useAppState();
+    const { isOnline, isLoggedIn } = useAppState();
     const dispatch = useDispatch();
 
     // Refresh session
@@ -43,7 +43,7 @@ export const App: FC = () => {
                         accessToken(response.accessToken);
                         setIsLoggedInToLocalStorage(true);
                     } else {
-                        setIsLoggedInToLocalStorage(false);
+                        isLoggedIn && setIsLoggedInToLocalStorage(false);
                     }
 
                     setLoading(false);

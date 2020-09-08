@@ -2,27 +2,23 @@
 import React, { FC, DetailedHTMLProps, Ref } from 'react';
 import styled from 'styled-components';
 
-// Assets
-import { menuHoverSound } from '../assets';
+// Elements
+import { Spinner } from './';
 
 interface ButtonProps extends DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
     // use React.Ref instead of React.LegacyRef to prevent type incompatibility errors with styled-components types
     ref?: Ref<HTMLButtonElement>;
-    withSound?: boolean;
-    active?: boolean;
+    loading?: boolean;
 }
 
-export const Button: FC<ButtonProps> = ({ children, withSound, ...otherProps }) => {
-    if (withSound) {
-        const menuSound = new Audio(menuHoverSound);
-        // menuSound.volume
-
+export const Button: FC<ButtonProps> = ({ children, loading, ...otherProps }) => {
+    if (loading) {
         return (
             <Styled
-                onMouseEnter = { () => menuSound.play() }
-                onMouseLeave = { () => false && menuSound.pause() }
+                disabled
+                loading
                 { ...otherProps }>
-                {children}
+                <Spinner />
             </Styled>
         );
     }
@@ -39,22 +35,15 @@ export const Button: FC<ButtonProps> = ({ children, withSound, ...otherProps }) 
 const Styled = styled.button<ButtonProps>`
     cursor: pointer;
     outline: none;
-    width: 220px;
-    height: 60px;
+    width: 150px;
+    height: 40px;
     border-width: 2px;
-    border-radius: 20px;
-    background-color: ${({ theme, active }) => active && theme.primaryVariant};
-    border-color: ${({ theme, active }) => active && theme.secondaryVariant};
-    border-style: ${({ active }) => active && 'inset'};
+    border-radius: 8px;
+    border-color: ${({ theme, loading }) => loading && theme.secondaryVariant};
+    background-color: ${({ theme, loading }) => loading && theme.primaryVariant};
 
-    &:hover, &:focus {
-        background-color: ${({ theme }) => theme.primaryVariant};
+    &:hover {
         border-color: ${({ theme }) => theme.secondaryVariant};
+        background-color: ${({ theme }) => theme.primaryVariant};
     }
 `;
-
-// background: radial-gradient(ellipse, #DfDfDf 0%, #FFF 60%);
-// border-image: linear-gradient(to right, #FFF, #933a, #724, #FFF ) 47% 0%;
-
-// border: 2px solid #147;
-// border-bottom: 2px solid #FFF;

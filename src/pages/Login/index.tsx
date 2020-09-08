@@ -4,12 +4,19 @@ import React, { FC, useState } from 'react';
 // Components
 import { ErrorBoundary } from '../../components';
 
+// Elements
+import { Input, Button } from '../../elements';
+
 // Hooks
 import { useLoginMutation } from '../../bus';
 import { useLoggedIn } from '../../hooks';
 
 // Instruments
 import { accessToken } from '../../apollo';
+
+// Assets
+import { LoginContainer, AnotherOneContainer } from './styles';
+import { PageTitle } from '../styles';
 
 type LoginProps = {}
 
@@ -20,38 +27,35 @@ const Login:FC<LoginProps> = () => {
     const { setIsLoggedInToLocalStorage } = useLoggedIn();
 
     return (
-        <div>
-            <div>KEK LOGIN</div>
-            <form onSubmit = { async (event) => {
-                event.preventDefault();
-                const response = await login({
-                    variables: { input: { name, password }},
-                });
+        <LoginContainer>
+            <PageTitle>Login</PageTitle>
+            <AnotherOneContainer>
+                <Input
+                    placeholder = 'Enter your username'
+                    value = { name }
+                    onChange = { (event) => setName(event.target.value) }
+                />
+                <Input
+                    placeholder = 'Enter your password'
+                    type = 'password'
+                    value = { password }
+                    onChange = { (event) => setPassword(event.target.value) }
+                />
 
-                if (response && response.data) {
-                    accessToken(response.data.loginWeb.accessToken);
-                    setIsLoggedInToLocalStorage(true);
-                }
-            } }>
-                <div>
-                    <input
-                        placeholder = 'enter email'
-                        value = { name }
-                        onChange = { (event) => setName(event.target.value) }
-                    />
-                </div>
-                <div>
-                    <input
-                        placeholder = 'enter password'
-                        value = { password }
-                        onChange = { (event) => setPassword(event.target.value) }
-                    />
-                </div>
-                <div>
-                    <button type = 'submit'>Login!1!</button>
-                </div>
-            </form>
-        </div>
+                <Button onClick = { async () => {
+                    const response = await login({
+                        variables: { input: { name, password }},
+                    });
+
+                    if (response && response.data) {
+                        accessToken(response.data.loginWeb.accessToken);
+                        setIsLoggedInToLocalStorage(true, 'Main');
+                    }
+                } }>
+                    Login
+                </Button>
+            </AnotherOneContainer>
+        </LoginContainer>
     );
 };
 

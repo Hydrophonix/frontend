@@ -14,7 +14,7 @@ import { NotAuthRoute } from './NotAuthRoute';
 import { useAppState } from '../../context';
 
 // Instruments
-import { ROUTE_PATH } from '../../constants';
+import { ROUTE_PATHS } from '../../constants';
 
 export const Routes: FC = () => {
     const { isLoggedIn } = useAppState();
@@ -24,37 +24,37 @@ export const Routes: FC = () => {
             <Switch>
                 <PrivateRoute
                     isLoggedIn = { isLoggedIn }
-                    path = { ROUTE_PATH.Profile }>
+                    path = { ROUTE_PATHS.Profile }>
                     <P.Profile />
                 </PrivateRoute>
 
                 <NotAuthRoute
                     isLoggedIn = { isLoggedIn }
-                    path = { ROUTE_PATH.Register }>
+                    path = { ROUTE_PATHS.Register }>
                     <P.Register />
                 </NotAuthRoute>
                 <NotAuthRoute
                     isLoggedIn = { isLoggedIn }
-                    path = { ROUTE_PATH.Login }>
+                    path = { ROUTE_PATHS.Login }>
                     <P.Login />
                 </NotAuthRoute>
 
                 <Route
                     exact
-                    path = { ROUTE_PATH.Game }>
+                    path = { ROUTE_PATHS.Game }>
                     <P.Game/>
                 </Route>
                 <Route
                     exact
-                    path = { ROUTE_PATH.Todos }>
+                    path = { ROUTE_PATHS.Todos }>
                     <P.Todos />
                 </Route>
                 <Route
                     exact
-                    path = { ROUTE_PATH.Resume }>
+                    path = { ROUTE_PATHS.Resume }>
                     <P.Resume />
                 </Route>
-                <Route path = { ROUTE_PATH.Main }>
+                <Route path = { ROUTE_PATHS.Main }>
                     <P.Main />
                 </Route>
             </Switch>

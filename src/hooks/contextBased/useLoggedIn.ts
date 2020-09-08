@@ -8,7 +8,7 @@ import { useDispatch } from '../../context';
 import { accessToken } from '../../apollo';
 
 // Instruments
-import { ROUTE_PATH, APP_NAME } from '../../constants';
+import { ROUTE_PATHS, APP_NAME } from '../../constants';
 
 export function isLoggedIn() {
     try {
@@ -27,13 +27,13 @@ export function useLoggedIn() {
     const dispatch = useDispatch();
     const { push } = useHistory();
 
-    const setIsLoggedIn = (value: boolean) => {
+    const setIsLoggedIn = (value: boolean, redirectTo?: keyof typeof ROUTE_PATHS) => {
         if (value) {
             dispatch({
                 type: 'setIsLoggedIn',
                 value,
             });
-            push(ROUTE_PATH.Main);
+            redirectTo && push(ROUTE_PATHS[ redirectTo ]);
         } else {
             dispatch({
                 type: 'setIsLoggedIn',
@@ -41,17 +41,17 @@ export function useLoggedIn() {
             });
             accessToken(null);
             apollo.resetStore();
-            push(ROUTE_PATH.Login);
+            redirectTo && push(ROUTE_PATHS[ redirectTo ]);
         }
     };
 
-    const setIsLoggedInToLocalStorage = (value: boolean) => {
+    const setIsLoggedInToLocalStorage = (value: boolean, redirectTo?: keyof typeof ROUTE_PATHS) => {
         try {
             store.set(`${APP_NAME}:isLoggedIn`, value);
         } catch (error) {
             console.log('isLoggedIn', error);
         } finally {
-            setIsLoggedIn(value);
+            setIsLoggedIn(value, redirectTo);
         }
     };
 

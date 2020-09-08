@@ -2,20 +2,17 @@
 import styled from 'styled-components';
 
 export const TopBarContainer = styled.div`
-    height: 100px;
+    height: 120px;
     width: 100%;
     margin-bottom: 15px;
     background: none;
 `;
 
-export const ControlPanelContainer = styled.div`
-    width: 250px;
-    height: 30px;
-    padding: 3px;
-    /* background: none; */
+export const PanelContainer = styled.div`
+    height: 32px;
     display: flex;
+    background: none;
     align-items: center;
-    justify-content: space-between;
 `;
 
 export const NavigationContainer = styled.div`
@@ -23,9 +20,11 @@ export const NavigationContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 20px 0;
 `;
 
-export const Flex = styled.div`
+export const PanelsContainer = styled.div`
     display: flex;
+    background: none;
+    padding: 8px;
+    justify-content: space-between;
 `;

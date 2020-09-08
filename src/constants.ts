@@ -5,7 +5,7 @@ export const TOKEN_URL = `${API_URL}/auth/refresh_token`;
 
 // App
 export const APP_NAME = process.env.APP_NAME || 'Awesome web app';
-export const ROUTE_PATH = {
+export const ROUTE_PATHS = {
     Main:     '/',
     Register: '/register',
     Login:    '/login',

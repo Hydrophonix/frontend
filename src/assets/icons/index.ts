@@ -6,9 +6,19 @@ import {
     faCompactDisc,
     faEdit,
     faTrashAlt,
+    faCaretSquareRight,
+    faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
-export const initIconsLibrary = () => library.add(faSun, faMoon, faCompactDisc, faEdit, faTrashAlt);
+export const initIconsLibrary = () => library.add(
+    faSun,
+    faMoon,
+    faCompactDisc,
+    faEdit,
+    faTrashAlt,
+    faCaretSquareRight,
+    faUser,
+);
 
 // Add icon objects to library to use in components like that:
 // import React from 'react'

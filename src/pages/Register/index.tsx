@@ -1,38 +1,61 @@
 // Core
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 // Components
-import { ErrorBoundary, Form } from '../../components';
+import { ErrorBoundary } from '../../components';
+
+// Elements
+import { Input, Button } from '../../elements';
+
+// Hooks
+import { useLoggedIn } from '../../hooks';
+import { useRegisterMutation } from '../../bus';
 
 // Instruments
 import { accessToken } from '../../apollo';
 
-// Types
-import { Register as RegisterResponse } from '../../bus';
-
 // Assets
-import { RegisterContainer } from './styles';
-import { useLoggedIn } from '../../hooks';
+import { LoginContainer, AnotherOneContainer } from '../Login/styles';
+import { PageTitle } from '../styles';
 
 type RegisterProps = {}
 
 const Register: FC<RegisterProps> = () => {
+    const [ name, setName ] = useState('');
+    const [ password, setPassword ] = useState('');
+    const [ register ] = useRegisterMutation();
     const { setIsLoggedInToLocalStorage } = useLoggedIn();
 
-    const handleRegister = (response: RegisterResponse) => {
-        accessToken(response?.registerWeb?.accessToken);
-        setIsLoggedInToLocalStorage(true);
-    };
-
     return (
-        <RegisterContainer>
-            <div>KEK Register</div>
-            <Form
-                buttonText = 'Register'
-                callback = { handleRegister }
-                mutation = 'register'
-            />
-        </RegisterContainer>
+        <LoginContainer>
+            <PageTitle>Register</PageTitle>
+            <AnotherOneContainer>
+                <Input
+                    placeholder = 'Enter your username'
+                    value = { name }
+                    onChange = { (event) => setName(event.target.value) }
+                />
+                <Input
+                    placeholder = 'Enter your password'
+                    type = 'password'
+                    value = { password }
+                    onChange = { (event) => setPassword(event.target.value) }
+                />
+
+                <Button onClick = { async () => {
+                    const response = await register({
+                        variables: { input: { name, password }},
+                    });
+
+                    if (response && response.data) {
+                        accessToken(response.data.registerWeb.accessToken);
+                        setIsLoggedInToLocalStorage(true, 'Main');
+                    }
+                } }>
+                    Register
+                </Button>
+            </AnotherOneContainer>
+        </LoginContainer>
     );
 };
 
