@@ -23,7 +23,7 @@
         "apollo-link-token-refresh": "^0.3.1",
         "downloadjs": "^1.4.7",
         "graphql": "^14.6.0",
-        "immer": "^6.0.1",
+        "immer": "^8.0.1",
         "jwt-decode": "^2.2.0",
         "react": "^16.13.0",
         "react-dom": "^16.13.0",
